@@ -7,17 +7,25 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class RegisterPage extends Application {
     @Override
+
+
+
+
+
     @FXML
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RegisterPage.class.getResource("Register-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 600, 550);
-        stage.setTitle("Hello!");
+        Scene scene = new Scene(fxmlLoader.load(), 650, 550);
+
+        stage.setTitle("Registration");
         stage.setScene(scene);
         stage.show();
     }
@@ -31,7 +39,7 @@ public class RegisterPage extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Login-view.fxml"));
             Stage registerStage = new Stage();
-            registerStage.setScene(new Scene(root, 600, 550));
+            registerStage.setScene(new Scene(root, 600, 450));
             registerStage.show();
         } catch (IOException f) {
             f.printStackTrace();

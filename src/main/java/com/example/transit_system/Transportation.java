@@ -19,6 +19,10 @@ public class Transportation {
         ArrivalTo = ato;
         AmountOfPassengers = aop;
     }
+
+    public Transportation() {
+    }
+
     public void setId(int ID)
     {
         id = ID;

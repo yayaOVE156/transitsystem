@@ -36,7 +36,8 @@ public class LoginPage extends Application {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("Register-view.fxml"));
             Stage registerStage = new Stage();
-            registerStage.setScene(new Scene(root, 600, 550));
+            registerStage.setTitle("Registration");
+            registerStage.setScene(new Scene(root));
             registerStage.show();
         }catch (IOException f) {
             f.printStackTrace();

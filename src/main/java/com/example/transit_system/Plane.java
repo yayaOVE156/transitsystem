@@ -7,4 +7,6 @@ public class Plane extends Transportation{
     {
         super(id, dt, at, dep, arr, aop);
     }
+
+    int tgesting;
 }

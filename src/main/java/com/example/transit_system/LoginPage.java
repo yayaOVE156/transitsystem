@@ -16,7 +16,7 @@ public class LoginPage extends Application {
     @FXML
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginPage.class.getResource("Login-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 650, 550);
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Login");
         stage.setScene(scene);
         stage.show();

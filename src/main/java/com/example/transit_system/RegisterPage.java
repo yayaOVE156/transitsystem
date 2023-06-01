@@ -23,7 +23,7 @@ public class RegisterPage extends Application {
     @FXML
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(RegisterPage.class.getResource("Register-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 650, 550);
+        Scene scene = new Scene(fxmlLoader.load());
 
         stage.setTitle("Registration");
         stage.setScene(scene);
@@ -39,7 +39,7 @@ public class RegisterPage extends Application {
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Login-view.fxml"));
             Stage registerStage = new Stage();
-            registerStage.setScene(new Scene(root, 600, 450));
+            registerStage.setScene(new Scene(root));
             registerStage.show();
         } catch (IOException f) {
             f.printStackTrace();

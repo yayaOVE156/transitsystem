@@ -1,0 +1,67 @@
+package com.example.transit_system;
+
+import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.GridPane;
+import javafx.stage.Stage;
+
+import java.io.IOException;
+
+public class HomePage extends Application {
+
+
+
+    @FXML
+    Label Welcome_text;
+
+    @FXML
+    ImageView fwzyAD;
+    @FXML
+    GridPane feedbackpane;
+
+    @FXML
+    Button feedback;
+
+    @FXML
+    Button home;
+
+    @FXML
+    public void start(Stage stage) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("Home-view.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
+        stage.setTitle("Homepage");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    @FXML
+    public void Feedbackshow(ActionEvent e)throws IOException {
+    Welcome_text.setVisible(false);
+    feedbackpane.setVisible(true);
+    fwzyAD.setVisible(false);
+
+
+    }
+
+    public void homeshow(ActionEvent e)throws IOException {
+        Welcome_text.setVisible(true);
+        feedbackpane.setVisible(false);
+        fwzyAD.setVisible(true);
+
+
+
+
+    }
+}

@@ -4,10 +4,7 @@ import java.util.Date;
 
 public interface Booking {
     int getBookingId();
-    Users getUser();
-    Flight getFlight();
     Date getBookingDate();
-    String getPaymentStatus();
-    Double getPaymentAmount();
-    boolean makePayment();
+    void setPrice(double price);
+    boolean PaymentConfirmation(User user);
 }

@@ -86,4 +86,5 @@ public abstract class Account
     {
         this.ProfilePicture = image;
     }
+
 }

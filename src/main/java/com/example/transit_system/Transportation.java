@@ -2,12 +2,12 @@ package com.example.transit_system;
 
 import java.util.Date;
 
-public class Transportation {
+public abstract class Transportation implements Booking {
     int id;
     Date DepTime;
     Date ArrivalTime;
     String DepFrom;
-    String ArrivalTo;
+    String Destination;
     int AmountOfPassengers;
 
 
@@ -16,7 +16,7 @@ public class Transportation {
         DepTime = dt;
         ArrivalTime = at;
         DepFrom = df;
-        ArrivalTo = ato;
+        Destination = ato;
         AmountOfPassengers = aop;
     }
 
@@ -48,13 +48,13 @@ public class Transportation {
     {
         return DepTime;
     }
-    public void setArrivalTo(String dest)
+    public void setDestination(String dest)
     {
-        ArrivalTo = dest;
+        Destination = dest;
     }
-    public String getArrivalTo()
+    public String getDestination()
     {
-        return ArrivalTo;
+        return Destination;
     }
     public void setArrivalTime(Date time)
     {
@@ -73,6 +73,14 @@ public class Transportation {
     {
         return AmountOfPassengers;
     }
-
+    @Override
+    public int getBookingId() {
+        return 0;
+    }
+    @Override
+    public Date getBookingDate() {
+        return null;
+    }
+    public abstract String getType();
 
 }

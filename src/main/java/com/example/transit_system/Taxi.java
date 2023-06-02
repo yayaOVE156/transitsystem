@@ -31,10 +31,6 @@ public class Taxi extends Transportation{
     {
         return licensePlate;
     }
-    public String getLicensePlate()
-    {
-        return licensePlate;
-    }
 
 
 }

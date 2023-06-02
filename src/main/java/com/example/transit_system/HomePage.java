@@ -18,18 +18,17 @@ import java.io.IOException;
 public class HomePage extends Application {
 
 
-
+    //Object instances related to the scenebuilder
     @FXML
     Label Welcome_text;
-
     @FXML
     ImageView fwzyAD;
     @FXML
     GridPane feedbackpane;
-
+    @FXML
+    Label ad1;
     @FXML
     Button feedback;
-
     @FXML
     Button home;
 
@@ -46,19 +45,22 @@ public class HomePage extends Application {
         launch();
     }
 
+    //When the feedback button is pressed
     @FXML
     public void Feedbackshow(ActionEvent e)throws IOException {
     Welcome_text.setVisible(false);
     feedbackpane.setVisible(true);
     fwzyAD.setVisible(false);
+    ad1.setVisible(false);
 
 
     }
-
+    //When the home button is pressed
     public void homeshow(ActionEvent e)throws IOException {
         Welcome_text.setVisible(true);
         feedbackpane.setVisible(false);
         fwzyAD.setVisible(true);
+        ad1.setVisible(true);
 
 
 

@@ -49,7 +49,7 @@
                   <TextField />
                   <Label text="Password:" />
                   <PasswordField />
-                  <Button contentDisplay="CENTER" mnemonicParsing="false" text="Login" />
+                  <Button fx:id="Loginbutton" contentDisplay="CENTER" mnemonicParsing="false" text="Login" />
                   <Hyperlink onAction="#RegisterClick" text="Register as New User" underline="true" />
                </children>
                <padding>

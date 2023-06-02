@@ -2,9 +2,12 @@ module com.example.transit_system {
     requires javafx.controls;
     requires javafx.fxml;
     requires firebase.admin;
-    requires com.google.auth.oauth2;
+    requires google.cloud.core;
+    requires google.cloud.firestore;
     requires com.google.auth;
+    requires com.google.auth.oauth2;
+    requires com.google.api.apicommon;
 
-    opens com.example.transit_system to javafx.fxml;
+    opens com.example.transit_system;
     exports com.example.transit_system;
 }

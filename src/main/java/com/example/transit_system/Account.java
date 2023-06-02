@@ -3,6 +3,10 @@ import javafx.scene.image.Image;
 
 public abstract class Account
 {
+
+    {
+
+    }
     // Declaration for the account data field names
     String UserName;
     String Password;
@@ -10,8 +14,18 @@ public abstract class Account
     String PhoneNumber;  //Made a string for the chance of having a "+" sign at the begininng of a number
     String Address;
     int ID;
-    Image ProfilePicture;  //A Taymour exclusive field, Taymour will handel it in future updates
+    //Image ProfilePicture;  //A Taymour exclusive field, Taymour will handel it in future updates
 
+    public Account(){}
+    public Account(String user, String pass, String email, String phone,String address, int num)
+    {
+        UserName = user;
+        Password = pass;
+        Email = email;
+        PhoneNumber = phone;
+        Address = address;
+        ID = num;
+    }
 
     //Need accessor and mutator for UserName
     public String getUserName()
@@ -78,13 +92,13 @@ public abstract class Account
     }
 
     //Accessor and Mutator for Profile Picture
-    public Image getProfilePicture()
-    {
-        return ProfilePicture;
-    }
-    public void setProfilePicture(Image image)
-    {
-        this.ProfilePicture = image;
-    }
+  //  public Image getProfilePicture()
+   // {
+   //     return ProfilePicture;
+   // }
+   // public void setProfilePicture(Image image)
+  //  {
+  //      this.ProfilePicture = image;
+  //  }
 
 }

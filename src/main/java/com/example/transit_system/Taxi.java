@@ -23,12 +23,13 @@ public class Taxi extends Transportation{
         return false;
     }
     public void setLicensePlate(String num)
-
-public class Taxi extends Transportation {
-
-    Taxi(){}
-    Taxi(int id, Date dt, Date at, String dep, String arr, int aop)
     {
         licensePlate = num;
     }
+    public String getLicensePlate()
+    {
+        return licensePlate;
+    }
+
+
 }

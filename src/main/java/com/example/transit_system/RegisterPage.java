@@ -42,6 +42,7 @@ public class RegisterPage extends Application {
         stage.show();
     }
 
+    //Register button click
     public void registerClick(ActionEvent e)throws IOException {
         if (!psswrd.getText().equals(psswrdR.getText())) {
             Repeat.setVisible(true);
@@ -51,6 +52,7 @@ public class RegisterPage extends Application {
 
 
     }
+    // When the login hyperlink is pressed
     @FXML
     public void LoginPage(ActionEvent e) {
         Scene currentScene = ((Node) e.getSource()).getScene();

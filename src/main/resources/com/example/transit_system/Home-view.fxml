@@ -30,6 +30,11 @@
          <top>
             <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1000.0" spacing="75.0" style="-fx-background-color: #65a7fc;" BorderPane.alignment="CENTER">
                <children>
+                  <ImageView fitHeight="46.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../img/Logo.png" />
+                     </image>
+                  </ImageView>
                   <Button fx:id="home" mnemonicParsing="false" onAction="#homeshow" prefHeight="45.0" prefWidth="84.0" text="Home">
                      <effect>
                         <ColorAdjust brightness="-0.16">

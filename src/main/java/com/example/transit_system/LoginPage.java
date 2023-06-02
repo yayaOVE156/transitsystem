@@ -7,6 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,6 +17,12 @@ public class LoginPage extends Application {
 
     @FXML
     Button Loginbutton;
+    @FXML
+    TextField email;
+    @FXML
+    TextField psswrd;
+    @FXML
+    Label Err;
     @Override
     @FXML
     public void start(Stage stage) throws IOException {

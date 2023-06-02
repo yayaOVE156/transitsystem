@@ -86,4 +86,9 @@ public abstract class Account
     {
         this.ProfilePicture = image;
     }
+
+    public void login(String username, String pass)
+    {
+
+    }
 }

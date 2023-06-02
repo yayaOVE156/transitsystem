@@ -2,7 +2,7 @@ package com.example.transit_system;
 
 import java.util.Date;
 
-public class Transportation {
+public abstract class Transportation implements Booking {
     int id;
     Date DepTime;
     Date ArrivalTime;
@@ -71,4 +71,16 @@ public class Transportation {
     }
 
 
+    @Override
+    public int getBookingId() {
+        return 0;
+    }
+    @Override
+    public Date getBookingDate() {
+        return null;
+    }
+    @Override
+    public boolean makePayment() {
+        return false;
+    }
 }

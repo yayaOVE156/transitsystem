@@ -2,6 +2,8 @@ package com.example.transit_system;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 // Class representing the Register Manager
 public class RegisterManager {
@@ -13,15 +15,48 @@ public class RegisterManager {
     }
 
     // Method to register a new user
-    public void registerUser(String username, String password) {
+    public void registerUser(String username, String password, String confirmPassword, String email,
+                             String address, String phoneNumber, String country) {
         // Check if the username is already taken
         if (userCredentials.containsKey(username)) {
             System.out.println("Username already taken. Please choose a different username.");
             return;
         }
+
+        // Check if the password and confirmed password match
+        if (!password.equals(confirmPassword)) {
+            System.out.println("Password and confirmed password do not match.");
+            return;
+        }
+
+        // Check if the email is valid
+        if (!isValidEmail(email)) {
+            System.out.println("Invalid email address.");
+            return;
+        }
+
+        // Check if the phone number is valid
+        if (!isValidPhoneNumber(phoneNumber)) {
+            System.out.println("Invalid phone number.");
+            return;
+        }
+
+        // Check if the country is valid
+        if (!isValidCountry(country)) {
+            System.out.println("Invalid country.");
+            return;
+        }
+
         // Add the user to the userCredentials map
         userCredentials.put(username, password);
-        System.out.println("User registered successfully: " + username);
+
+        // Display the registration details
+        System.out.println("User registered successfully:");
+        System.out.println("Username: " + username);
+        System.out.println("Email: " + email);
+        System.out.println("Address: " + address);
+        System.out.println("Phone Number: " + phoneNumber);
+        System.out.println("Country: " + country);
     }
 
     // Method to check if a username is available
@@ -29,14 +64,43 @@ public class RegisterManager {
         return !userCredentials.containsKey(username);
     }
 
+    // Method to validate an email address using regular expression
+    private boolean isValidEmail(String email) {
+        String regex = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
+    }
+
+    // Method to validate a phone number
+    private boolean isValidPhoneNumber(String phoneNumber) {
+        // Remove any non-digit characters from the phone number
+        String digitsOnly = phoneNumber.replaceAll("[^0-9]", "");
+
+        // Check if the remaining digits form a valid phone number
+        return digitsOnly.matches("\\d{10}"); // Assuming a 10-digit phone number
+    }
+
+    // Method to validate a country
+    private boolean isValidCountry(String country) {
+        // List of valid countries
+        String[] validCountries = { "Country A", "Country B", "Country C" }; // Add more valid countries as needed
+
+        // Check if the country is present in the valid countries list
+        for (String validCountry : validCountries) {
+            if (validCountry.equalsIgnoreCase(country)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     // Main method to test the RegisterManager class
     public static void main(String[] args) {
         RegisterManager registerManager = new RegisterManager();
-        registerManager.registerUser("user1", "password1");
-        registerManager.registerUser("user2", "password2");
-        boolean isUsernameAvailable = registerManager.isUsernameAvailable("user1");
-        System.out.println("Username 'user1' is available: " + isUsernameAvailable);
-        isUsernameAvailable = registerManager.isUsernameAvailable("user3");
-        System.out.println("Username 'user3' is available: " + isUsernameAvailable);
+        registerManager.registerUser("user1", "password1", "password1", "user1@example.com",
+                "123 Main St, City, Country", "1234567890", "Country A");
+        registerManager.registerUser("user2", "password2", "password3", "user2@example.com",
+                "456 Elm St, City, Country", "9876543210", "Country D");
     }
 }

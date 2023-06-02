@@ -19,6 +19,10 @@ public abstract class Transportation implements Booking {
         Destination = ato;
         AmountOfPassengers = aop;
     }
+
+    public Transportation() {
+    }
+
     public void setId(int ID)
     {
         id = ID;

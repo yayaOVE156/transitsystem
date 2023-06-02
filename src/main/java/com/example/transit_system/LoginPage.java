@@ -6,13 +6,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class LoginPage extends Application {
-    @Override
 
+    @FXML
+    Button Loginbutton;
+    @Override
     @FXML
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginPage.class.getResource("Login-view.fxml"));
@@ -36,7 +39,8 @@ public class LoginPage extends Application {
         try{
             Parent root = FXMLLoader.load(getClass().getResource("Register-view.fxml"));
             Stage registerStage = new Stage();
-            registerStage.setScene(new Scene(root, 600, 550));
+            registerStage.setTitle("Registration");
+            registerStage.setScene(new Scene(root));
             registerStage.show();
         }catch (IOException f) {
             f.printStackTrace();

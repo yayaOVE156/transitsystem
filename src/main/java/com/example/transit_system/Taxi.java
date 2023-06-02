@@ -2,6 +2,7 @@ package com.example.transit_system;
 
 import java.util.Date;
 
+
 public class Taxi extends Transportation{
     String licensePlate;
     Taxi(int id, Date dt, Date at, String dep, String arr, int aop, String num) {
@@ -22,6 +23,11 @@ public class Taxi extends Transportation{
         return false;
     }
     public void setLicensePlate(String num)
+
+public class Taxi extends Transportation {
+
+    Taxi(){}
+    Taxi(int id, Date dt, Date at, String dep, String arr, int aop)
     {
         licensePlate = num;
     }

@@ -7,18 +7,30 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class RegisterPage extends Application {
+
+   @FXML
+    TextField psswrd;
+   @FXML
+   TextField psswrdR;
+   @FXML
+    Button registerbutton;
+
+   @FXML
+   Label Repeat;
+
+
     @Override
-
-
-
-
 
     @FXML
     public void start(Stage stage) throws IOException {
@@ -29,8 +41,20 @@ public class RegisterPage extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    //Register button click
+    public void registerClick(ActionEvent e)throws IOException {
+        if (!psswrd.getText().equals(psswrdR.getText())) {
+            Repeat.setVisible(true);
+        }
+
+
+
+
+    }
+    // When the login hyperlink is pressed
     @FXML
-    public void LoginClick(ActionEvent e) {
+    public void LoginPage(ActionEvent e) {
         Scene currentScene = ((Node) e.getSource()).getScene();
         Stage currentStage = (Stage) currentScene.getWindow();
 
@@ -38,9 +62,11 @@ public class RegisterPage extends Application {
 
         try {
             Parent root = FXMLLoader.load(getClass().getResource("Login-view.fxml"));
-            Stage registerStage = new Stage();
-            registerStage.setScene(new Scene(root));
-            registerStage.show();
+            Stage loginStage = new Stage();
+            loginStage.setTitle("Login");
+
+            loginStage.setScene(new Scene(root));
+            loginStage.show();
         } catch (IOException f) {
             f.printStackTrace();
         }

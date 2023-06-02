@@ -29,6 +29,15 @@ public class RegisterPage extends Application {
    @FXML
    Label Repeat;
 
+   @FXML
+   TextField email;
+   @FXML
+   TextField Username;
+   @FXML
+   TextField address;
+   @FXML
+   TextField phone;
+   
 
     @Override
 

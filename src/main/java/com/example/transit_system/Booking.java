@@ -5,5 +5,6 @@ import java.util.Date;
 public interface Booking {
     int getBookingId();
     Date getBookingDate();
-    boolean makePayment();
+    void setPrice(double price);
+    boolean PaymentConfirmation(User user);
 }

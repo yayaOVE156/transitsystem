@@ -21,8 +21,19 @@ public class Hotel implements Booking{
     public Date getBookingDate() {
         return null;
     }
+
     @Override
-    public boolean makePayment() {
+    public void setPrice(double price) {
+
+    }
+
+    @Override
+    public boolean PaymentConfirmation(User user) {
         return false;
+    }
+
+    public String getType()
+    {
+        return "This is a hotel";
     }
 }

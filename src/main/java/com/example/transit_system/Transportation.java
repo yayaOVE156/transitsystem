@@ -7,7 +7,7 @@ public abstract class Transportation implements Booking {
     Date DepTime;
     Date ArrivalTime;
     String DepFrom;
-    String ArrivalTo;
+    String Destination;
     int AmountOfPassengers;
 
 
@@ -16,7 +16,7 @@ public abstract class Transportation implements Booking {
         DepTime = dt;
         ArrivalTime = at;
         DepFrom = df;
-        ArrivalTo = ato;
+        Destination = ato;
         AmountOfPassengers = aop;
     }
     public void setId(int ID)
@@ -44,13 +44,13 @@ public abstract class Transportation implements Booking {
     {
         return DepTime;
     }
-    public void setArrivalTo(String dest)
+    public void setDestination(String dest)
     {
-        ArrivalTo = dest;
+        Destination = dest;
     }
-    public String getArrivalTo()
+    public String getDestination()
     {
-        return ArrivalTo;
+        return Destination;
     }
     public void setArrivalTime(Date time)
     {
@@ -69,8 +69,6 @@ public abstract class Transportation implements Booking {
     {
         return AmountOfPassengers;
     }
-
-
     @Override
     public int getBookingId() {
         return 0;
@@ -79,8 +77,6 @@ public abstract class Transportation implements Booking {
     public Date getBookingDate() {
         return null;
     }
-    @Override
-    public boolean makePayment() {
-        return false;
-    }
+    public abstract String getType();
+
 }

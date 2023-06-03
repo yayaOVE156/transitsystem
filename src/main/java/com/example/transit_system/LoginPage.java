@@ -52,7 +52,6 @@ public class LoginPage extends Application{
             Stage currentStage = (Stage) currentScene.getWindow();
 
             currentStage.close();
-            System.out.println("Closed");
             Parent root = FXMLLoader.load(getClass().getResource("Home-view.fxml"));
 //            Stage homeStage = new Stage();
 //

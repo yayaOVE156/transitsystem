@@ -8,8 +8,8 @@ import java.util.Date;
 public class Bus extends Transportation{
 
     public Bus(){}
-    public Bus(int id, Date dt, Date at, String dep, String arr, int aop) {
-        super(id, dt, at, dep, arr, aop);
+    public Bus(int id, Date dt, Date at, String dep, String arr, int aop, String name, double price) {
+        super(id, dt, at, dep, arr, aop, name, price);
 
     }
 

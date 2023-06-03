@@ -8,8 +8,8 @@ import java.util.Date;
 public class Plane extends Transportation{
 
     public Plane(){}
-    public Plane(int id, Date dt, Date at, String dep, String arr, int aop) {
-        super(id, dt, at, dep, arr, aop);
+    public Plane(int id, Date dt, Date at, String dep, String arr, int aop, String name, double price) {
+        super(id, dt, at, dep, arr, aop, name, price);
 
     }
 

@@ -8,6 +8,7 @@ module com.example.transit_system {
     requires com.google.auth.oauth2;
     requires com.google.api.apicommon;
     requires java.base;
+    requires java.sql;
 
     opens com.example.transit_system;
     exports com.example.transit_system;

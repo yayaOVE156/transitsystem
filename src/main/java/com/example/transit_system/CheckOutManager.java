@@ -5,7 +5,7 @@ import java.util.List;
 class Item {
     private String name;
     private double price;
-
+    public Item (){}
     // Constructor to initialize the item
     public Item(String name, double price) {
         this.name = name;

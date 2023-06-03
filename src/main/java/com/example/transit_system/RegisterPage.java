@@ -20,33 +20,33 @@ import java.util.concurrent.ExecutionException;
 
 
 public class RegisterPage extends Application {
-   @FXML
+    @FXML
     TextField psswrd;
 
-   @FXML
-   TextField psswrdR;
-   @FXML
+    @FXML
+    TextField psswrdR;
+    @FXML
     Button registerbutton;
-   @FXML
-   Label Repeat;
-   @FXML
-   TextField name;
-   @FXML
-   TextField email;
-   @FXML
-   TextField Username;
-   @FXML
-   TextField address;
-   @FXML
-   TextField phone;
-   @FXML
-   Label URepeat;
-   @FXML
-   Label miss;
-   @FXML
-   Label ERepeat;
+    @FXML
+    Label Repeat;
+    @FXML
+    TextField name;
+    @FXML
+    TextField email;
+    @FXML
+    TextField Username;
+    @FXML
+    TextField address;
+    @FXML
+    TextField phone;
+    @FXML
+    Label URepeat;
+    @FXML
+    Label miss;
+    @FXML
+    Label ERepeat;
 
-   
+
 
     @Override
 
@@ -58,7 +58,7 @@ public class RegisterPage extends Application {
         stage.setTitle("Registration");
         stage.setScene(scene);
         stage.show();
-       // Username.setText("a");
+        // Username.setText("a");
 //        TextField[] tf={psswrd,Username,phone,address,email};
 //        for(int i=0;i<6;i++){
 //            tf[i].setText("");
@@ -100,7 +100,7 @@ public class RegisterPage extends Application {
             DatabaseHandler.addUser(new User(Username.getText(),psswrd.getText(),email.getText(),phone.getText(),address.getText(),11));
         }
 
-    //   addUser(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
+        //   addUser(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
         //law get raga3t null
 
 
@@ -127,7 +127,7 @@ public class RegisterPage extends Application {
     }
     public static void main(String[] args) {
         launch();
-    }
+}
 
 
 }

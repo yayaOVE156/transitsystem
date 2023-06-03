@@ -3,11 +3,10 @@ package com.example.transit_system;
 import java.util.Date;
 
 public class Train extends Transportation{
-
     public Train(){}
-    public Train(int id, Date dt, Date at, String dep, String arr, int aop)
+    public Train(int id, Date dt, Date at, String dep, String arr, int aop, String name, double price)
     {
-        super(id, dt, at, dep, arr, aop);
+        super(id, dt, at, dep, arr, aop, name, price);
     }
 
     @Override

@@ -200,12 +200,17 @@ public class BookingManager {
 //}
 //
 //// Class representing the Booking System
+// Class representing the Booking System
 //public class BookingSystem {
 //    private Map<String, Transportation> bookings;
+//    private Map<String, Integer> busSeatsMap;
+//    private Map<String, Integer> planeSeatsMap;
 //
 //    // Constructor to initialize the BookingSystem
 //    public BookingSystem() {
 //        bookings = new HashMap<>();
+//        busSeatsMap = new HashMap<>();
+//        planeSeatsMap = new HashMap<>();
 //    }
 //
 //    // Method to add a new booking
@@ -215,18 +220,49 @@ public class BookingManager {
 //            System.out.println("Booking ID already exists. Please choose a different ID.");
 //            return;
 //        }
-//        // Add the booking to the bookings map
-//        bookings.put(bookingId, transportation);
-//        System.out.println("Booking added successfully: " + transportation.getType() + " - " + transportation.getId());
+//
+//        // Check available seats for Bus and Plane
+//        if (transportation instanceof Bus) {
+//            Bus bus = (Bus) transportation;
+//            int availableSeats = calculateAvailableSeats(busSeatsMap, bus.getBusNumber());
+//            if (availableSeats > 0) {
+//                bookings.put(bookingId, transportation);
+//                decreaseAvailableSeats(busSeatsMap, bus.getBusNumber());
+//                System.out.println("Booking added successfully: " + transportation.getType() + " - " + transportation.getId());
+//            } else {
+//                System.out.println("No available seats for Bus: " + bus.getBusNumber());
+//            }
+//        } else if (transportation instanceof Plane) {
+//            Plane plane = (Plane) transportation;
+//            int availableSeats = calculateAvailableSeats(planeSeatsMap, String.valueOf(plane.getFlightNumber()));
+//            if (availableSeats > 0) {
+//                bookings.put(bookingId, transportation);
+//                decreaseAvailableSeats(planeSeatsMap, String.valueOf(plane.getFlightNumber()));
+//                System.out.println("Booking added successfully: " + transportation.getType() + " - " + transportation.getId());
+//            } else {
+//                System.out.println("No available seats for Flight: " + plane.getFlightNumber());
+//            }
+//        } else {
+//            bookings.put(bookingId, transportation);
+//            System.out.println("Booking added successfully: " + transportation.getType() + " - " + transportation.getId());
+//        }
 //    }
 //
 //    // Method to cancel a booking
 //    public void cancelBooking(String bookingId) {
 //        // Check if the booking ID exists
 //        if (bookings.containsKey(bookingId)) {
-//            // Remove the booking from the bookings map
 //            Transportation cancelledBooking = bookings.remove(bookingId);
 //            System.out.println("Booking cancelled: " + cancelledBooking.getType() + " - " + cancelledBooking.getId());
+//
+//            // Update available seats for Bus and Plane
+//            if (cancelledBooking instanceof Bus) {
+//                Bus bus = (Bus) cancelledBooking;
+//                increaseAvailableSeats(busSeatsMap, bus.getBusNumber());
+//            } else if (cancelledBooking instanceof Plane) {
+//                Plane plane = (Plane) cancelledBooking;
+//                increaseAvailableSeats(planeSeatsMap, String.valueOf(plane.getFlightNumber()));
+//            }
 //        } else {
 //            System.out.println("Booking ID not found.");
 //        }
@@ -256,6 +292,23 @@ public class BookingManager {
 //        } else {
 //            System.out.println("Booking ID not found.");
 //        }
+//    }
+//
+//    // Method to calculate the available seats for a specific transportation type
+//    private int calculateAvailableSeats(Map<String, Integer> seatsMap, String key) {
+//        return seatsMap.containsKey(key) ? seatsMap.get(key) : 0;
+//    }
+//
+//    // Method to decrease the available seats for a specific transportation type
+//    private void decreaseAvailableSeats(Map<String, Integer> seatsMap, String key) {
+//        int availableSeats = calculateAvailableSeats(seatsMap, key);
+//        seatsMap.put(key, availableSeats - 1);
+//    }
+//
+//    // Method to increase the available seats for a specific transportation type
+//    private void increaseAvailableSeats(Map<String, Integer> seatsMap, String key) {
+//        int availableSeats = calculateAvailableSeats(seatsMap, key);
+//        seatsMap.put(key, availableSeats + 1);
 //    }
 //
 //    // Main method to test the BookingSystem class

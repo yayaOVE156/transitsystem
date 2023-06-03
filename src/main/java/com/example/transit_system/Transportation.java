@@ -6,7 +6,7 @@ import java.time.LocalTime;
 import java.util.Calendar;
 import java.util.Date;
 
-public abstract class Transportation implements Booking {
+public abstract class Transportation extends Item implements Booking {
     int id;
     Date DepTime;
     Date ArrivalTime;
@@ -15,7 +15,8 @@ public abstract class Transportation implements Booking {
     int AmountOfPassengers;
 
 
-    Transportation(int id, Date dt, Date at, String df, String ato, int aop){
+    Transportation(int id, Date dt, Date at, String df, String ato, int aop,String Name,Double Price){
+        super(Name, Price );
         this.id = id;
         DepTime = dt;
         ArrivalTime = at;
@@ -77,6 +78,7 @@ public abstract class Transportation implements Booking {
     {
         return AmountOfPassengers;
     }
+
     public abstract String getType();
 
 }

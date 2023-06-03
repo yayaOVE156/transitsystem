@@ -8,8 +8,8 @@ import java.util.Date;
 public class InternationalTrain extends Train {
 
     InternationalTrain(){}
-    InternationalTrain(int id, Date dt, Date at, String dep, String arr, int aop)
+    InternationalTrain(int id, Date dt, Date at, String dep, String arr, int aop, String name, double price)
     {
-        super(id, dt, at, dep, arr, aop);
+        super(id, dt, at, dep, arr, aop, name, price);
     }
 }

@@ -9,8 +9,8 @@ import java.util.Date;
 public class Taxi extends Transportation{
     String licensePlate;
     public Taxi(){}
-    public Taxi(int id, Date dt, Date at, String dep, String arr, int aop, String num) {
-        super(id, dt, at, dep, arr, aop);
+    public Taxi(int id, Date dt, Date at, String dep, String arr, int aop, String num, String name, double price) {
+        super(id, dt, at, dep, arr, aop, name, price);
         licensePlate = num;
     }
     @Override

@@ -129,6 +129,9 @@ public class RegisterManager {
 //            if (userCredentials.containsKey(username)) {
 //                throw new Exception("Username already taken. Please choose a different username.");
 //            }
+//            if (userCredentials.containsKey(username)== "") {
+////                throw new Exception("Please enter a user name nigga are u retarded");
+////            }
 //
 //            // Check if the password and confirmed password match
 //            if (!password.equals(confirmPassword)) {
@@ -184,7 +187,7 @@ public class RegisterManager {
 //        String digitsOnly = phoneNumber.replaceAll("[^0-9]", "");
 //
 //        // Check if the remaining digits form a valid phone number
-//        return digitsOnly.matches("\\d{10}"); // Assuming a 10-digit phone number
+//        return digitsOnly.matches("\\d{11}"); // Assuming a 10-digit phone number
 //    }
 //
 //    // Method to validate a country

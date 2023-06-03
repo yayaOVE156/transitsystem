@@ -104,7 +104,10 @@ public class RegisterManager {
                 "456 Elm St, City, Country", "9876543210", "Country D");
     }
 }
-//import java.util.HashMap;
+//import javafx.scene.control.Alert;
+//        import javafx.scene.control.Alert.AlertType;
+//
+//        import java.util.HashMap;
 //        import java.util.Map;
 //        import java.util.regex.Matcher;
 //        import java.util.regex.Pattern;
@@ -158,7 +161,7 @@ public class RegisterManager {
 //            System.out.println("Phone Number: " + phoneNumber);
 //            System.out.println("Country: " + country);
 //        } catch (Exception e) {
-//            System.out.println("Registration failed: " + e.getMessage());
+//            displayErrorMessage("Registration Failed", e.getMessage());
 //        }
 //    }
 //
@@ -196,6 +199,15 @@ public class RegisterManager {
 //            }
 //        }
 //        return false;
+//    }
+//
+//    // Method to display an error message as a message box in the GUI
+//    private void displayErrorMessage(String title, String message) {
+//        Alert alert = new Alert(AlertType.ERROR);
+//        alert.setTitle(title);
+//        alert.setHeaderText(null);
+//        alert.setContentText(message);
+//        alert.showAndWait();
 //    }
 //
 //    // Main method to test the RegisterManager class

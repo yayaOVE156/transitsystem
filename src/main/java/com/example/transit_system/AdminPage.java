@@ -14,11 +14,6 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class AdminPage extends Application {
-
-
-
-
-
     @FXML
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HomePage.class.getResource("Admin-view.fxml"));

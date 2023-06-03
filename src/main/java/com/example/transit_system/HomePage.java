@@ -72,11 +72,8 @@ public class HomePage extends Application {
         ad1.setVisible(true);
         planes.setVisible(false);
         bus.setVisible(false);
-
-
-    }
-
-    @FXML
+      
+      @FXML
     public void feedbackshow(ActionEvent e)throws IOException{
         Welcometext.setVisible(false);
         feedbackpane.setVisible(true);
@@ -94,6 +91,8 @@ public class HomePage extends Application {
         ad1.setVisible(false);
         planes.setVisible(true);
         bus.setVisible(false);
+
+
     }
     @FXML
     public void busshow(ActionEvent e)throws IOException {

@@ -20,7 +20,6 @@ import java.util.concurrent.ExecutionException;
 
 
 public class RegisterPage extends Application {
-
    @FXML
     TextField psswrd;
 
@@ -44,6 +43,8 @@ public class RegisterPage extends Application {
    Label URepeat;
    @FXML
    Label miss;
+   @FXML
+   Label ERepeat;
 
    
 
@@ -67,22 +68,33 @@ public class RegisterPage extends Application {
     //Register button click
     public void registerClick(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
 
+        boolean passerror = false;
 
+        boolean emailerror = false;
+
+        boolean nameerror = false;
 
         if (!psswrd.getText().equals(psswrdR.getText())) {
             Repeat.setVisible(true);
+            passerror = true;
         }else{
             Repeat.setVisible(false);
         }
         if(DatabaseHandler.getUser(Username.getText())!=null){
             URepeat.setVisible(true);
+            nameerror = true;
         }else{
             URepeat.setVisible(false);
         }
+        if(DatabaseHandler.checkEmail(email.getText())) {
+            emailerror = true;
+            ERepeat.setVisible(true);
+        }
+        else {
+            ERepeat.setVisible(false);
+        }
 
-       // if()
-
-        if(psswrd.getText().isEmpty()|| Username.getText().equals(" ") || email.getText().isEmpty()||address.getText().isEmpty()||name.getText().isEmpty()||phone.getText().isEmpty()){
+        if(psswrd.getText().isEmpty() || Username.getText().isEmpty() || email.getText().isEmpty()||address.getText().isEmpty()||name.getText().isEmpty()||phone.getText().isEmpty() || passerror || nameerror || emailerror){
             miss.setVisible(true);
         }else{
             DatabaseHandler.addUser(new User(Username.getText(),psswrd.getText(),email.getText(),phone.getText(),address.getText(),11));

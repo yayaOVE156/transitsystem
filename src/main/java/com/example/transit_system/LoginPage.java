@@ -14,7 +14,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
-public class LoginPage extends Application {
+
+public class LoginPage extends Application{
 
     @FXML
     Button Loginbutton;

@@ -28,11 +28,6 @@
          <top>
             <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1000.0" spacing="75.0" style="-fx-background-color: #65a7fc;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="46.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../img/Logo.png" />
-                     </image>
-                  </ImageView>
                   <SplitMenuButton mnemonicParsing="false" prefHeight="45.0" prefWidth="115.0" text="Create Tickets">
                     <items>
                         <MenuItem mnemonicParsing="false" text="Bus" />

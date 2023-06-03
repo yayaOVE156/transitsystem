@@ -20,7 +20,7 @@ public class HomePage extends Application {
 
     //Object instances related to the scenebuilder
     @FXML
-    Label Welcome_text;
+    Label Welcometext;
     @FXML
     ImageView fwzyAD;
     @FXML
@@ -39,8 +39,15 @@ public class HomePage extends Application {
         stage.setTitle("Homepage");
         stage.setScene(scene);
         stage.show();
+
     }
 
+    UserS Userdata =UserS.getInstance();
+
+    public  void welcometext(ActionEvent v)throws IOException,IllegalArgumentException{
+
+        Welcometext.setText("Welcome " + Userdata.getUsername());
+    }
     public static void main(String[] args) {
         launch();
     }
@@ -48,7 +55,7 @@ public class HomePage extends Application {
     //When the feedback button is pressed
     @FXML
     public void Feedbackshow(ActionEvent e)throws IOException {
-    Welcome_text.setVisible(false);
+    Welcometext.setVisible(false);
     feedbackpane.setVisible(true);
     fwzyAD.setVisible(false);
     ad1.setVisible(false);
@@ -57,7 +64,7 @@ public class HomePage extends Application {
     }
     //When the home button is pressed
     public void homeshow(ActionEvent e)throws IOException {
-        Welcome_text.setVisible(true);
+        Welcometext.setVisible(true);
         feedbackpane.setVisible(false);
         fwzyAD.setVisible(true);
         ad1.setVisible(true);

@@ -19,7 +19,7 @@
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.transit_system.HomePage">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseEntered="#welcometext" prefHeight="750.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.transit_system.HomePage">
    <children>
       <ImageView fitHeight="669.0" fitWidth="1000.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" scaleY="1.15">
          <image>
@@ -30,11 +30,6 @@
          <top>
             <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1000.0" spacing="75.0" style="-fx-background-color: #65a7fc;" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fitHeight="46.0" fitWidth="116.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../img/Logo.png" />
-                     </image>
-                  </ImageView>
                   <Button fx:id="home" mnemonicParsing="false" onAction="#homeshow" prefHeight="45.0" prefWidth="84.0" text="Home">
                      <effect>
                         <ColorAdjust brightness="-0.16">
@@ -122,7 +117,7 @@
                         <Image url="@../../../img/fawzyResort.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="Welcome_text" alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="251.0" prefHeight="170.0" prefWidth="305.0" text="Welcome" textAlignment="CENTER">
+                  <Label fx:id="Welcometext" alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="251.0" prefHeight="170.0" prefWidth="305.0" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri Bold" size="38.0" />
                      </font>

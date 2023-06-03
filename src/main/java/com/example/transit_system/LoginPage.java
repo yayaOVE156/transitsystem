@@ -12,13 +12,14 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
 
 public class LoginPage extends Application {
 
     @FXML
     Button Loginbutton;
     @FXML
-    TextField email;
+    TextField username;
     @FXML
     TextField psswrd;
     @FXML
@@ -37,6 +38,36 @@ public class LoginPage extends Application {
         launch();
     }
 
+    @FXML
+    public void loginClick(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
+        User user = DatabaseHandler.getUser(username.getText());
+
+        if(!user.getUserName().equals(username.getText()) || !user.getPassword().equals(psswrd.getText())){
+            Err.setVisible(true);
+        }else{
+        UserS userdata =UserS.getInstance();
+        userdata.setUsername(username.getText());
+            Scene currentScene = ((Node) e.getSource()).getScene();
+            Stage currentStage = (Stage) currentScene.getWindow();
+
+            currentStage.close();
+            System.out.println("Closed");
+            Parent root = FXMLLoader.load(getClass().getResource("Home-view.fxml"));
+//            Stage homeStage = new Stage();
+//
+//            homeStage.setTitle("Homepage");
+//            homeStage.setScene(new Scene(root));
+//            homeStage.show();
+                HomePage home = new HomePage();
+                home.start(new Stage());
+
+
+
+
+
+        }
+
+    }
     @FXML
     public void RegisterClick(ActionEvent e) {
         Scene currentScene = ((Node) e.getSource()).getScene();

@@ -16,19 +16,22 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutionException;
+
 
 public class RegisterPage extends Application {
 
    @FXML
     TextField psswrd;
+
    @FXML
    TextField psswrdR;
    @FXML
     Button registerbutton;
-
    @FXML
    Label Repeat;
-
+   @FXML
+   TextField name;
    @FXML
    TextField email;
    @FXML
@@ -37,6 +40,11 @@ public class RegisterPage extends Application {
    TextField address;
    @FXML
    TextField phone;
+   @FXML
+   Label URepeat;
+   @FXML
+   Label miss;
+
    
 
     @Override
@@ -49,15 +57,39 @@ public class RegisterPage extends Application {
         stage.setTitle("Registration");
         stage.setScene(scene);
         stage.show();
+       // Username.setText("a");
+//        TextField[] tf={psswrd,Username,phone,address,email};
+//        for(int i=0;i<6;i++){
+//            tf[i].setText("");
+//        }
     }
 
     //Register button click
-    public void registerClick(ActionEvent e)throws IOException {
+    public void registerClick(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
+
+
+
         if (!psswrd.getText().equals(psswrdR.getText())) {
             Repeat.setVisible(true);
+        }else{
+            Repeat.setVisible(false);
+        }
+        if(DatabaseHandler.getUser(Username.getText())!=null){
+            URepeat.setVisible(true);
+        }else{
+            URepeat.setVisible(false);
         }
 
+       // if()
 
+        if(psswrd.getText().isEmpty()|| Username.getText().equals(" ") || email.getText().isEmpty()||address.getText().isEmpty()||name.getText().isEmpty()||phone.getText().isEmpty()){
+            miss.setVisible(true);
+        }else{
+            DatabaseHandler.addUser(new User(Username.getText(),psswrd.getText(),email.getText(),phone.getText(),address.getText(),11));
+        }
+
+    //   addUser(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
+        //law get raga3t null
 
 
     }

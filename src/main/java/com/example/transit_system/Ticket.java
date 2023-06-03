@@ -1,15 +1,19 @@
 package com.example.transit_system;
 
+import java.util.List;
+
 public class Ticket {
     Ticket(){}
+    List<Item> ListOfItems;
+    static int TicketID;
 
-    Ticket(float price, int transportationid, Item item)
+    Ticket(double price, int transportationid, Item item)
     {
         Price = price;
         TransportationID = transportationid;
         this.item = item;
     }
-    float Price;
+    double Price;
     int TransportationID;
 
     Item item;
@@ -26,7 +30,7 @@ public class Ticket {
         return TransportationID;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return Price;
     }
 }

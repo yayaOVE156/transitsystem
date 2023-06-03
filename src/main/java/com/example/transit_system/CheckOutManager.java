@@ -24,6 +24,8 @@ class Item {
 // Class representing the CheckOut Manager
 public class CheckOutManager {
     private List<Item> cart;
+
+    public Ticket Customer;
     private double totalPrice;
     private double discount;
     private double tax;
@@ -107,8 +109,10 @@ public class CheckOutManager {
         System.out.println("Checkout Receipt:");
         for (Item item : cart) {
             System.out.println("Item: " + item.getName() + " - Price: " + item.getPrice());
+            Customer.ListOfItems.add(item);
         }
         System.out.println("Total Price: " + totalPrice);
+        Customer.Price=totalPrice;
         System.out.println("Discount: " + discount);
         System.out.println("Tax: " + (totalPrice - discount) * (tax / 100));
         System.out.println("Final Price: " + calculateTotalPrice());

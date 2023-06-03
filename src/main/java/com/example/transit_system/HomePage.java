@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -42,11 +43,10 @@ public class HomePage extends Application {
 
     }
 
-    UserS Userdata =UserS.getInstance();
+    UserS userdata =UserS.getInstance();
 
-    public  void welcometext(ActionEvent v)throws IOException,IllegalArgumentException{
-
-        Welcometext.setText("Welcome " + Userdata.getUsername());
+    public  void welcometext(MouseEvent e)throws IOException,IllegalArgumentException{
+        Welcometext.setText("Welcome " + userdata.getUsername());
     }
     public static void main(String[] args) {
         launch();
@@ -68,9 +68,6 @@ public class HomePage extends Application {
         feedbackpane.setVisible(false);
         fwzyAD.setVisible(true);
         ad1.setVisible(true);
-
-
-
 
     }
 }

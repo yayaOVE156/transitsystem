@@ -7,6 +7,7 @@ public class Hotel implements Booking{
     float hotel_rate;
     double hotel_price;
 
+    public Hotel(){}
     public Hotel(String name, float rating, double price_per_night){
         hotel_name =  name;
         hotel_rate = rating;
@@ -16,10 +17,6 @@ public class Hotel implements Booking{
     @Override
     public int getBookingId() {
         return 0;
-    }
-    @Override
-    public Date getBookingDate() {
-        return null;
     }
 
     @Override
@@ -34,6 +31,24 @@ public class Hotel implements Booking{
 
     public String getType()
     {
-        return "This is a hotel";
+        return "hotel";
     }
+
+    public void setHotel_name(String name){hotel_name = name;}
+    public String getHotel_name(){return hotel_name;}
+    public void setHotel_rate(float rate)
+    {
+        hotel_rate = rate;
+    }
+    public float getHotel_rate(){
+        return hotel_rate;
+    }
+    public void setHotel_price(double price)
+    {
+        hotel_price = price;
+    }
+    public double getHotel_price(){
+        return hotel_price;
+    }
+
 }

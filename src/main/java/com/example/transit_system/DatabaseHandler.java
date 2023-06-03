@@ -1,12 +1,11 @@
 package com.example.transit_system;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
+import java.time.Instant;
+import java.time.ZoneOffset;
 
 import com.google.api.core.ApiFuture;
 import com.google.cloud.firestore.*;
@@ -31,7 +30,7 @@ public class DatabaseHandler {
 
             Firestore db = options.getService();
 
-            DocumentReference docRef = db.collection("test3").document("");
+            DocumentReference docRef = db.collection("test3").document("test2").collection("brother").document();
 
             Map<String, Number> data = new HashMap<>();
             data.put("hello", 10);
@@ -50,11 +49,6 @@ public class DatabaseHandler {
         ApiFuture<WriteResult> docRef = db.collection("Accounts").document(user.getUserName()).set(user);
         System.out.println("Update time: " + docRef.get());
     }
-    public static void addUser()
-    {
-
-    }
-
     public static User getUser(String userName) throws IOException, ExecutionException, InterruptedException {
         FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
         FirestoreOptions options = FirestoreOptions.newBuilder()
@@ -94,8 +88,235 @@ public class DatabaseHandler {
         return user;
 
     }
-    public static void main(String[] args) throws Exception {
-        addUser(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
+
+    public static Boolean checkEmail(String email) throws IOException, ExecutionException, InterruptedException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Query query = db.collection("Accounts").whereEqualTo("email",email);
+        ApiFuture<QuerySnapshot> future = query.get();
+        QuerySnapshot querySnapShot = future.get();
+        if(!querySnapShot.isEmpty()) {
+            return true;
+        }
+        else
+            return false;
     }
+    public static void addAdmin(Adminstrator admin) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        ApiFuture<WriteResult> docRef = db.collection("Accounts").document(admin.getUserName()).set(admin);
+        System.out.println("Update time: " + docRef.get());
+    }
+    public static Adminstrator getAdmin(String userName) throws IOException, ExecutionException, InterruptedException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Adminstrator admin = null;
+        DocumentReference docRef = db.collection("Accounts").document(userName);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            admin = document.toObject(Adminstrator.class);
+        }
+        else
+            System.out.println("no such document!");
+        return admin;
+    }
+    public static void addHotel(Hotel hotel) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        ApiFuture<WriteResult> docRef = db.collection("Item").document("Booking").collection("Hotel").document(hotel.getHotel_name()).set(hotel);
+        System.out.println("Update time: " + docRef.get());
+    }
+   public static Hotel getHotel(String name) throws IOException, ExecutionException, InterruptedException{
+       FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+       FirestoreOptions options = FirestoreOptions.newBuilder()
+               .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+               .build();
+       Firestore db = options.getService();
+       Hotel hotel = null;
+       DocumentReference docRef = db.collection("Item").document("Booking").collection("Hotel").document(name);
+       ApiFuture<DocumentSnapshot> future = docRef.get();
+       DocumentSnapshot document = future.get();
+       if(document.exists()) {
+           System.out.println("Document Data: " + document.getData());
+           hotel= document.toObject(Hotel.class);
+       }
+       else
+           System.out.println("no such document!");
+       return hotel;
+   }
+    public static void addTrain(Train train) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        ApiFuture<WriteResult> docRef = db.collection("Item").document("Booking").collection("Train").document(String.valueOf(train.getId())).set(train);
+        System.out.println("Update time: " + docRef.get());
+    }
+    public static Train getTrain(int id) throws IOException, ExecutionException, InterruptedException{
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Train train = null;
+        DocumentReference docRef = db.collection("Item").document("Booking").collection("Train").document(String.valueOf(id));
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            train= document.toObject(Train.class);
+        }
+        else
+            System.out.println("no such document!");
+        return train;
+    }
+    public static void addInternationalTrain(InternationalTrain train) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        ApiFuture<WriteResult> docRef = db.collection("Item").document("Booking").collection("International Train").document(String.valueOf(train.getId())).set(train);
+        System.out.println("Update time: " + docRef.get());
+    }
+    public static InternationalTrain getInternationalTrain(int id) throws IOException, ExecutionException, InterruptedException{
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        InternationalTrain train = null;
+        DocumentReference docRef = db.collection("Item").document("Booking").collection("International Train").document(String.valueOf(id));
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            train= document.toObject(InternationalTrain.class);
+        }
+        else
+            System.out.println("no such document!");
+        return train;
+    }
+    public static void addPlane(Plane plane) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        ApiFuture<WriteResult> docRef = db.collection("Item").document("Booking").collection("Plane").document(String.valueOf(plane.getId())).set(plane);
+        System.out.println("Update time: " + docRef.get());
+    }
+    public static Plane getPlane(int id) throws IOException, ExecutionException, InterruptedException{
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Plane plane = null;
+        DocumentReference docRef = db.collection("Item").document("Booking").collection("Plane").document(String.valueOf(id));
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            plane = document.toObject(Plane.class);
+        }
+        else
+            System.out.println("no such document!");
+        return plane;
+    }
+    public static void addBus(Bus bus) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        ApiFuture<WriteResult> docRef = db.collection("Item").document("Booking").collection("Plane").document(String.valueOf(bus.getId())).set(bus);
+        System.out.println("Update time: " + docRef.get());
+    }
+    public static Bus getBus(int id) throws IOException, ExecutionException, InterruptedException{
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Bus bus = null;
+        DocumentReference docRef = db.collection("Item").document("Booking").collection("Bus").document(String.valueOf(id));
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            bus = document.toObject(Bus.class);
+        }
+        else
+            System.out.println("no such document!");
+        return bus;
+    }
+    public static void addTaxi(Taxi taxi) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        ApiFuture<WriteResult> docRef = db.collection("Item").document("Booking").collection("Taxi").document(taxi.getLicensePlate()).set(taxi);
+        System.out.println("Update time: " + docRef.get());
+    }
+    public static Taxi getTaxi(String Lp) throws IOException, ExecutionException, InterruptedException{
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Taxi taxi = null;
+        DocumentReference docRef = db.collection("Item").document("Booking").collection("Taxi").document(Lp);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            taxi = document.toObject(Taxi.class);
+        }
+        else
+            System.out.println("no such document!");
+        return taxi;
+    }
+
+
+    public static void main(String[] args) throws Exception {
+      //  addUser(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
+      // getUser("Acey");
+      //  addHotel(new Hotel("Fawzy Resort", 4.5F, 500));
+      //  getHotel("Fawzy Resort");
+      //  DatabaseHandler.initialize();
+
+        //addTrain(new Train((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
+               // new Date(123, 2, 1, 20, 20, 10),
+                //"Cairo", "Alex", 30));
+
+       // addInternationalTrain(new InternationalTrain((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
+                // new Date(123, 2, 1, 20, 20, 10),
+              //  "Cairo", "Alexandria", 50));
+        //getInternationalTrain(176);
+
+
+
+
+    }
+
+
+
 
 }

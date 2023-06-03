@@ -3,11 +3,10 @@ package com.example.transit_system;
 public class Adminstrator extends Account{
 
     Feedback feedback[];
-    public Adminstrator(){}
-    public Adminstrator(String username, String password, String email, String phonenum, String address, int id )
+    Adminstrator(String username, String password, String email, String phonenum, String address, int id )
     {
         super(username, password, email, phonenum, address, id);
-
+        Admin = true;
     }
 
 

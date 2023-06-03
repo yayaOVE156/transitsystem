@@ -3,13 +3,18 @@ package com.example.transit_system;
 import java.util.Date;
 
 public class Train extends Transportation{
-    int trainNumber;
-    Train(int id, Date dt, Date at, String dep, String arr, int aop, int num)
 
+    public Train(){}
+    public Train(int id, Date dt, Date at, String dep, String arr, int aop)
     {
         super(id, dt, at, dep, arr, aop);
-        trainNumber = num;
     }
+
+    @Override
+    public int getBookingId() {
+        return 0;
+    }
+
     @Override
     public void setPrice(double price) {
 
@@ -23,15 +28,7 @@ public class Train extends Transportation{
     @Override
     public String getType()
     {
-        return "this is a Train";
+        return "Train";
     }
 
-    public int getTrainNumber()
-    {
-        return trainNumber;
-    }
-    public void setTrainNumber(int num)
-    {
-        trainNumber = num;
-    }
 }

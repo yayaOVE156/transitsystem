@@ -1,15 +1,23 @@
 package com.example.transit_system;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 public class Plane extends Transportation{
 
-    int flightNumber;
-    Plane(int id, Date dt, Date at, String dep, String arr, int aop, int num) {
+    public Plane(){}
+    public Plane(int id, Date dt, Date at, String dep, String arr, int aop) {
         super(id, dt, at, dep, arr, aop);
-        flightNumber = num;
 
     }
+
+    @Override
+    public int getBookingId() {
+        return 0;
+    }
+
     @Override
     public void setPrice(double price) {
 
@@ -20,16 +28,8 @@ public class Plane extends Transportation{
         return false;
     }
 
-    public int getFlightNumber()
-    {
-        return flightNumber;
-    }
-    public void setFlightNumber(int num)
-    {
-        flightNumber = num;
-    }
     public String getType()
     {
-        return "This is a Plane";
+        return "Plane";
     }
 }

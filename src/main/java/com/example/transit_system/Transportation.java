@@ -1,5 +1,9 @@
 package com.example.transit_system;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Calendar;
 import java.util.Date;
 
 public abstract class Transportation implements Booking {
@@ -72,14 +76,6 @@ public abstract class Transportation implements Booking {
     public int getAmountOfPassengers()
     {
         return AmountOfPassengers;
-    }
-    @Override
-    public int getBookingId() {
-        return 0;
-    }
-    @Override
-    public Date getBookingDate() {
-        return null;
     }
     public abstract String getType();
 

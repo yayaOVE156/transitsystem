@@ -3,10 +3,6 @@ import javafx.scene.image.Image;
 
 public abstract class Account
 {
-
-    {
-
-    }
     // Declaration for the account data field names
     String UserName;
     String Password;
@@ -14,19 +10,21 @@ public abstract class Account
     String PhoneNumber;  //Made a string for the chance of having a "+" sign at the begininng of a number
     String Address;
     int ID;
-    //Image ProfilePicture;  //A Taymour exclusive field, Taymour will handel it in future updates
+    boolean Admin;
 
-    public Account(){}
-    public Account(String user, String pass, String email, String phone,String address, int num)
+   // Image ProfilePicture;  //A Taymour exclusive field, Taymour will handel it in future updates
+
+
+    public Account(){};
+    public Account(String user, String pass, String Email, String phonenumber, String address, int id)
     {
         UserName = user;
         Password = pass;
-        Email = email;
-        PhoneNumber = phone;
+        this.Email = Email;
+        PhoneNumber = phonenumber;
         Address = address;
-        ID = num;
+        ID = id;
     }
-
     //Need accessor and mutator for UserName
     public String getUserName()
     {
@@ -91,14 +89,34 @@ public abstract class Account
         this.PhoneNumber=PhoneNumber;
     }
 
+    public void setAdmin(boolean admin)
+    {
+        Admin = admin;
+    }
+
+    public boolean isAdmin()
+    {
+        return Admin;
+    }
+
+    public String getType(){
+        if(isAdmin())
+            return "Admin";
+        else
+            return "User";
+    }
+
+
+
+
     //Accessor and Mutator for Profile Picture
-  //  public Image getProfilePicture()
-   // {
-   //     return ProfilePicture;
-   // }
-   // public void setProfilePicture(Image image)
-  //  {
-  //      this.ProfilePicture = image;
-  //  }
+    //public Image getProfilePicture()
+    //{
+    //    return ProfilePicture;
+    //}
+    //public void setProfilePicture(Image image)
+    //{
+    //    this.ProfilePicture = image;
+    //}
 
 }

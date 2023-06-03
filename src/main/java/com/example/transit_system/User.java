@@ -8,6 +8,7 @@ public class User extends Account{
         public User(String user, String pass, String Email, String phonenumber, String address, int iD)
         {
             super(user, pass, Email, phonenumber, address, iD);
+            Admin = false;
         }
         Transportation Book_Transport(Transportation transport)
         {
@@ -19,7 +20,4 @@ public class User extends Account{
         {
 
         }
-
-
-
 }

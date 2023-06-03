@@ -6,6 +6,7 @@ public class Adminstrator extends Account{
     Adminstrator(String username, String password, String email, String phonenum, String address, int id )
     {
         super(username, password, email, phonenum, address, id);
+        Admin = true;
     }
 
 

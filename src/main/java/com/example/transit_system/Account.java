@@ -10,6 +10,8 @@ public abstract class Account
     String PhoneNumber;  //Made a string for the chance of having a "+" sign at the begininng of a number
     String Address;
     int ID;
+    boolean Admin;
+
    // Image ProfilePicture;  //A Taymour exclusive field, Taymour will handel it in future updates
 
 
@@ -86,6 +88,26 @@ public abstract class Account
     {
         this.PhoneNumber=PhoneNumber;
     }
+
+    public void setAdmin(boolean admin)
+    {
+        Admin = admin;
+    }
+
+    public boolean isAdmin()
+    {
+        return Admin;
+    }
+
+    public String getType(){
+        if(isAdmin())
+            return "Admin";
+        else
+            return "User";
+    }
+
+
+
 
     //Accessor and Mutator for Profile Picture
     //public Image getProfilePicture()

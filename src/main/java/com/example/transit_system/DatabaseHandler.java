@@ -7,8 +7,9 @@ import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.time.Instant;
 import java.time.ZoneOffset;
-
+import java.sql.Timestamp;
 import com.google.api.core.ApiFuture;
+//import com.google.cloud.Timestamp;
 import com.google.cloud.firestore.*;
 import com.google.auth.oauth2.GoogleCredentials;
 import com.google.firebase.FirebaseApp;
@@ -327,38 +328,57 @@ public class DatabaseHandler {
         return taxi;
     }
 
-    //------------------------ Getting Transports that have the same timestaps ---------------------------------\\
-    public static Transportation[] getTransportsSameTime(String type,Date date1, Date date2) throws IOException, ExecutionException, InterruptedException {
+    public static void addTicket(Ticket ticket, String userName) throws ExecutionException, InterruptedException, IOException {
         FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
         FirestoreOptions options = FirestoreOptions.newBuilder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .build();
         Firestore db = options.getService();
-        Query query = null;
-        if (type == "Plane") {
-             query = db.collection("item").document("Booking").collection("Plane").whereGreaterThan("timestamp", date1).whereLessThan("timestamp", date2);
-        } else if (type == "International Train") {
-                 query = db.collection("item").document("Booking").collection("International Train").whereGreaterThan("timestamp", date1).whereLessThan("timestamp", date2);
-            }
-            else if (type == "Train"){
-                 query = db.collection("item").document("Booking").collection("Train").whereGreaterThan("timestamp",date1).whereLessThan("timestamp",date2);}
-        else if (type == "Taxi")
-        {
-            query = db.collection("item").document("Booking").collection("Taxi").whereGreaterThan("timestamp",date1).whereLessThan("timestamp",date2);}
-        else
-        {            query = db.collection("item").document("Booking").collection("Bus").whereGreaterThan("timestamp",date1).whereLessThan("timestamp",date2);}
-        ApiFuture<QuerySnapshot> future = query.get();
-        QuerySnapshot snapshots = future.get();
-        List<Transportation> transportationList = new ArrayList<>();
-        for (QueryDocumentSnapshot document: snapshots.getDocuments())
-        {
-            Transportation transportation = document.toObject(Transportation.class);
-            transportationList.add(transportation);
-            System.out.println(transportation);
-        }
-        Transportation[] transports = new Transportation[transportationList.size()];
-        return transportationList.toArray(transports);
+        ApiFuture<WriteResult> docRef = db.collection("Accounts").document(userName).collection("Tickets").document(String.valueOf(ticket.getTransportationID())).set(ticket);
+        System.out.println("Update time: " + docRef.get());
+    }
 
+    public static Ticket getTicket(int id, String userName) throws IOException, ExecutionException, InterruptedException{
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Ticket ticket = null;
+        DocumentReference docRef = db.collection("Accounts").document(userName).collection("Tickets").document(String.valueOf(id));
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            ticket = document.toObject(Ticket.class);
+        }
+        else
+            System.out.println("no such document!");
+        return ticket;
+    }
+
+    public static List<Ticket> getTickets(String userName) throws IOException, ExecutionException, InterruptedException{
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Ticket ticket = null;
+        DocumentReference docRef = db.collection("Accounts").document(userName);
+        CollectionReference ticketsRef = docRef.collection("Tickets");
+        ApiFuture<QuerySnapshot> future = ticketsRef.get();
+        QuerySnapshot snapshots = future.get();
+
+        List<Ticket> userTickets = new ArrayList<>();
+        for(QueryDocumentSnapshot document : snapshots.getDocuments()) {
+            ticket = document.toObject(Ticket.class);
+            userTickets.add(ticket);
+            System.out.println(document.getData());
+
+        }
+        if(snapshots.isEmpty())
+            System.out.println("no such document!");
+        return userTickets;
     }
 
     public static void main(String[] args) throws Exception {
@@ -368,20 +388,21 @@ public class DatabaseHandler {
       //  getHotel("Fawzy Resort");
       //  DatabaseHandler.initialize();
 
-        //addTrain(new Train((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
-               // new Date(123, 2, 1, 20, 20, 10),
-                //"Cairo", "Alex", 30));
+        addTrain(new Train((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
+                new Date(123, 2, 1, 20, 20, 10), "Cairo", "Alex", 30, "atr 6 ela telt", 69));
 
        // addInternationalTrain(new InternationalTrain((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
                 // new Date(123, 2, 1, 20, 20, 10),
               //  "Cairo", "Alexandria", 50));
         //getInternationalTrain(176);
 
-       // addPlane(new Plane(new Random().nextInt(300 - 100) + 100, new Date(123, 2, 1, 10, 10, 10),
-                // new Date(123, 2, 1, 20, 20, 10),
+       // addPlane(new Plane(new Random().nextInt(300 - 100) + 100, new Date(124, 0, 1, 5, 10, 5),
+               //  new Date(124, 0, 1, 5, 20, 10),
                // "Cairo", "Alex", 10));
-        getTransportsSameTime("Plane",new Date(123, 2, 1, 10, 10, 10), new Date(123, 2, 1, 20, 20, 10));
-
+      //  getTransportsSameTime("Plane",new Date(123, 2, 1, 10, 10, 10), new Date(123, 2, 1, 20, 20, 10));
+      // addTicket( new Ticket(1000,new Random().nextInt(1000-100)+100, new Train((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
+          //     new Date(123, 2, 1, 20, 20, 10), "Cairo", "Alex", 30, "atr 6 ela telt", 69)),"Acey");
+       // getTickets("Acey");
 
     }
 

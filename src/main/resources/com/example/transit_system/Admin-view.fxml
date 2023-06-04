@@ -3,17 +3,20 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.text.Font?>
 
@@ -28,25 +31,7 @@
          <top>
             <HBox alignment="CENTER" prefHeight="78.0" prefWidth="1000.0" spacing="75.0" style="-fx-background-color: #65a7fc;" BorderPane.alignment="CENTER">
                <children>
-                  <SplitMenuButton mnemonicParsing="false" prefHeight="45.0" prefWidth="115.0" text="Create Tickets">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Bus" />
-                      <MenuItem mnemonicParsing="false" text="Plane" />
-                      <MenuItem mnemonicParsing="false" text="Taxi" />
-                        <MenuItem mnemonicParsing="false" text="Train" />
-                    </items>
-                     <effect>
-                        <InnerShadow>
-                           <input>
-                              <ColorAdjust brightness="-0.16" />
-                           </input>
-                           <color>
-                              <Color red="0.14901961386203766" green="0.572549045085907" blue="1.0" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </SplitMenuButton>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="84.0" text="Feedback Viewer">
+                  <Button mnemonicParsing="false" onAction="#addadmin" prefHeight="45.0" prefWidth="122.0" text="Admin Maker">
                      <effect>
                         <ColorAdjust brightness="-0.16">
                            <input>
@@ -59,7 +44,20 @@
                         </ColorAdjust>
                      </effect>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="84.0" text="Logout">
+                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="122.0" text="Feedback Viewer">
+                     <effect>
+                        <ColorAdjust brightness="-0.16">
+                           <input>
+                              <InnerShadow>
+                                 <color>
+                                    <Color red="0.14814814925193787" green="0.5740740895271301" blue="1.0" />
+                                 </color>
+                              </InnerShadow>
+                           </input>
+                        </ColorAdjust>
+                     </effect>
+                  </Button>
+                  <Button mnemonicParsing="false" onAction="#logout" prefHeight="45.0" prefWidth="84.0" text="Logout">
                      <effect>
                         <ColorAdjust brightness="-0.16">
                            <input>
@@ -88,11 +86,66 @@
                      <children>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label alignment="CENTER" layoutX="377.0" layoutY="239.0" prefHeight="194.0" prefWidth="246.0" text="Welcome Admin" textFill="#e80c0c">
+                              <Label fx:id="welctitle" alignment="CENTER" layoutX="377.0" layoutY="239.0" prefHeight="194.0" prefWidth="246.0" text="Welcome Admin" textFill="#e80c0c" visible="false">
                                  <font>
                                     <Font name="Chiller" size="27.0" />
                                  </font>
                               </Label>
+                              <AnchorPane layoutX="112.0" layoutY="52.0" prefHeight="567.0" prefWidth="776.0">
+                                 <children>
+                                    <GridPane fx:id="adminpane" layoutX="-7.0" layoutY="59.0" prefHeight="510.0" prefWidth="783.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="750.0" minWidth="10.0" prefWidth="750.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                        <RowConstraints maxHeight="446.0" minHeight="10.0" prefHeight="411.0" valignment="CENTER" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="184.0" minHeight="10.0" prefHeight="156.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <HBox alignment="CENTER" prefHeight="214.0" prefWidth="750.0" spacing="250.0" GridPane.rowIndex="1">
+                                             <children>
+                                                <Button mnemonicParsing="false" onAction="#adda" prefHeight="45.0" prefWidth="112.0" text="Add as Admin">
+                                                   <effect>
+                                                      <ColorAdjust brightness="-0.16">
+                                                         <input>
+                                                            <InnerShadow>
+                                                               <color>
+                                                                  <Color red="0.14814814925193787" green="0.5740740895271301" blue="1.0" />
+                                                               </color>
+                                                            </InnerShadow>
+                                                         </input>
+                                                      </ColorAdjust>
+                                                   </effect>
+                                                </Button>
+                                                <Button mnemonicParsing="false" onAction="#rema" prefHeight="45.0" prefWidth="133.0" text="Remove as Admin">
+                                                   <effect>
+                                                      <ColorAdjust brightness="-0.16">
+                                                         <input>
+                                                            <InnerShadow>
+                                                               <color>
+                                                                  <Color red="0.14814814925193787" green="0.5740740895271301" blue="1.0" />
+                                                               </color>
+                                                            </InnerShadow>
+                                                         </input>
+                                                      </ColorAdjust>
+                                                   </effect>
+                                                </Button>
+                                             </children>
+                                          </HBox>
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="150.0">
+                                             <children>
+                                                <Label text="Admin Maker" textFill="RED">
+                                                   <font>
+                                                      <Font name="Chiller" size="29.0" />
+                                                   </font>
+                                                </Label>
+                                                <TextField fx:id="usernameA" alignment="CENTER" prefHeight="25.0" prefWidth="818.0" promptText="Type Username" />
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
                            </children>
                         </Pane>
                      </children>

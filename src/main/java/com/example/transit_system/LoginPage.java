@@ -25,8 +25,9 @@ public class LoginPage extends Application{
     TextField psswrd;
     @FXML
     Label Err;
-    @Override
     @FXML
+
+        @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginPage.class.getResource("Login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
@@ -41,18 +42,46 @@ public class LoginPage extends Application{
 
     @FXML
     public void loginClick(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
-        User user = DatabaseHandler.getUser(username.getText());
 
-        if(!user.getUserName().equals(username.getText()) || !user.getPassword().equals(psswrd.getText())){
-            Err.setVisible(true);
+        Object v = DatabaseHandler.getUser(username.getText());
+        if(v instanceof Adminstrator){
+            Adminstrator admin = (Adminstrator) v;
+            if(!admin.getUserName().equals(username.getText()) || !admin.getPassword().equals(psswrd.getText())){
+                Err.setVisible(true);
+            }else{
+                UserS userdata =UserS.getInstance();
+                userdata.setUsername(username.getText());
+                Scene currentScene = ((Node) e.getSource()).getScene();
+                Stage currentStage = (Stage) currentScene.getWindow();
+
+                currentStage.close();
+                Parent root = FXMLLoader.load(getClass().getResource("Admin-view.fxml"));
+//            Stage homeStage = new Stage();
+//
+//            homeStage.setTitle("Homepage");
+//            homeStage.setScene(new Scene(root));
+//            homeStage.show();
+                AdminPage admino = new AdminPage();
+                admino.start(new Stage());
+
+
+
+
+
+            }
+
         }else{
-        UserS userdata =UserS.getInstance();
-        userdata.setUsername(username.getText());
-            Scene currentScene = ((Node) e.getSource()).getScene();
-            Stage currentStage = (Stage) currentScene.getWindow();
+            User user = (User)v;
+            if(!user.getUserName().equals(username.getText()) || !user.getPassword().equals(psswrd.getText())){
+                Err.setVisible(true);
+            }else{
+                UserS userdata =UserS.getInstance();
+                userdata.setUsername(username.getText());
+                Scene currentScene = ((Node) e.getSource()).getScene();
+                Stage currentStage = (Stage) currentScene.getWindow();
 
-            currentStage.close();
-            Parent root = FXMLLoader.load(getClass().getResource("Home-view.fxml"));
+                currentStage.close();
+                Parent root = FXMLLoader.load(getClass().getResource("Home-view.fxml"));
 //            Stage homeStage = new Stage();
 //
 //            homeStage.setTitle("Homepage");
@@ -65,7 +94,9 @@ public class LoginPage extends Application{
 
 
 
+            }
         }
+
 
     }
     @FXML

@@ -25,8 +25,9 @@ public class LoginPage extends Application{
     TextField psswrd;
     @FXML
     Label Err;
-    @Override
     @FXML
+
+        @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(LoginPage.class.getResource("Login-view.fxml"));
         Scene scene = new Scene(fxmlLoader.load());

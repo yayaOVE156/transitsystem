@@ -2,10 +2,12 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.image.Image?>
@@ -48,8 +50,8 @@
                     <items>
                         <MenuItem mnemonicParsing="false" onAction="#busshow" text="Bus" />
                       <MenuItem mnemonicParsing="false" onAction="#planeshow" text="Plane" />
-                      <MenuItem mnemonicParsing="false" text="Taxi" />
-                        <MenuItem mnemonicParsing="false" text="Train" />
+                      <MenuItem mnemonicParsing="false" onAction="#taxishow" text="Taxi" />
+                        <MenuItem mnemonicParsing="false" onAction="#trainshow" text="Train" />
                     </items>
                      <effect>
                         <InnerShadow>
@@ -62,7 +64,7 @@
                         </InnerShadow>
                      </effect>
                   </SplitMenuButton>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="115.0" text="Booked Tickets">
+                  <Button mnemonicParsing="false" onAction="#bookshow" prefHeight="45.0" prefWidth="115.0" text="Booked Tickets">
                      <effect>
                         <ColorAdjust brightness="-0.16">
                            <input>
@@ -88,7 +90,7 @@
                         </ColorAdjust>
                      </effect>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="84.0" text="Logout">
+                  <Button mnemonicParsing="false" onAction="#logout" prefHeight="45.0" prefWidth="84.0" text="Logout">
                      <effect>
                         <ColorAdjust brightness="-0.16">
                            <input>
@@ -113,7 +115,7 @@
          <center>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
                <children>
-                  <GridPane fx:id="bus" layoutX="80.0" layoutY="92.0" prefHeight="536.0" prefWidth="841.0">
+                  <GridPane fx:id="bus" layoutX="80.0" layoutY="92.0" prefHeight="536.0" prefWidth="841.0" visible="false">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="760.0" minWidth="10.0" prefWidth="751.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="705.0" minWidth="10.0" prefWidth="90.0" />
@@ -124,9 +126,12 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#ebus1u" text="Une7gz" GridPane.columnIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#ebus2u" text="Une7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#ebus3u" text="Une7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button fx:id="b1" mnemonicParsing="false" onAction="#ebus1" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" />
+                        <Button fx:id="b2" mnemonicParsing="false" onAction="#ebus2" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="b3" mnemonicParsing="false" onAction="#ebus3" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
@@ -156,7 +161,7 @@
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
                                     <Label text="Type" />
-                                    <Label text="Label" />
+                                    <Label text="Local" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
@@ -196,7 +201,7 @@
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
                                     <Label text="Type" />
-                                    <Label text="Label" />
+                                    <Label text="Local" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
@@ -236,7 +241,7 @@
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
                                     <Label text="Type" />
-                                    <Label text="Label" />
+                                    <Label text="Local" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
@@ -249,12 +254,12 @@
                         </HBox>
                      </children>
                   </GridPane>
-                  <ImageView fx:id="fwzyAD" fitHeight="401.0" fitWidth="317.0" layoutX="14.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" scaleY="1.5" visible="false">
+                  <ImageView fx:id="fwzyAD" fitHeight="401.0" fitWidth="317.0" layoutX="14.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" scaleY="1.5">
                      <image>
                         <Image url="@../../../img/fawzyResort.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="Welcometext" alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="251.0" prefHeight="170.0" prefWidth="305.0" textAlignment="CENTER" visible="false">
+                  <Label fx:id="Welcometext" alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="251.0" prefHeight="170.0" prefWidth="305.0" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri Bold" size="38.0" />
                      </font>
@@ -272,7 +277,7 @@
                         <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="165.0" text="Submit Feedback" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Label fx:id="ad1" contentDisplay="CENTER" layoutX="14.0" layoutY="39.0" prefHeight="24.0" prefWidth="78.0" text="Tayayaah ads:" textAlignment="CENTER" visible="false">
+                  <Label fx:id="ad1" contentDisplay="CENTER" layoutX="14.0" layoutY="39.0" prefHeight="24.0" prefWidth="78.0" text="Tayayaah ads:" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri Light" size="13.0" />
                      </font>
@@ -288,45 +293,48 @@
                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#eplane3u" prefWidth="60.0" text="Une7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#eplane2u" prefWidth="60.0" text="Une7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#eplane1u" prefWidth="60.0" text="Une7gz" GridPane.columnIndex="1" />
+                        <Button fx:id="p1" mnemonicParsing="false" onAction="#eplane1" prefHeight="25.0" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" />
+                        <Button fx:id="p2" mnemonicParsing="false" onAction="#eplane2" prefHeight="25.0" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="p3" mnemonicParsing="false" onAction="#eplane3" prefHeight="25.0" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="From" />
+                                    <Label text="Alex." />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Dep. Time" />
+                                    <Label text="6/15/23 5:00 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Arrival Time" />
+                                    <Label text="6/15/23 5:30 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Price" />
+                                    <Label text="\$100" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Type" />
+                                    <Label text="Local" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="To" />
+                                    <Label text="Cairo" />
                                  </children>
                               </VBox>
                            </children>
@@ -335,38 +343,38 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="From" />
+                                    <Label text="Alex." />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Dep. Time" />
+                                    <Label text="6/20/23 5:00 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Arrival Time" />
+                                    <Label text="6/20/23 10:00 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Price" />
+                                    <Label text="\$500" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Type" />
+                                    <Label text="International" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="To" />
+                                    <Label text="Paris" />
                                  </children>
                               </VBox>
                            </children>
@@ -375,45 +383,65 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="From" />
+                                    <Label text="Alex." />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Dep. Time" />
+                                    <Label text="6/26/23 5:00 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Arrival Time" />
+                                    <Label text="6/26/23 8:00 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Price" />
+                                    <Label text="\$400" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Type" />
+                                    <Label text="International" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="To" />
+                                    <Label text="Fawzy Land" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="taxi" layoutX="90.0" layoutY="102.0" prefHeight="536.0" prefWidth="841.0" visible="false">
+                  <GridPane fx:id="taxi" layoutX="100.0" layoutY="92.0" prefHeight="536.0" prefWidth="841.0" visible="false">
+                     <columnConstraints>
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="760.0" minWidth="10.0" prefWidth="254.0" />
+                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="705.0" minWidth="10.0" prefWidth="587.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#etaxiu" prefWidth="60.0" text="Une7gz" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Button fx:id="tax" mnemonicParsing="false" onAction="#etaxi" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <TextField fx:id="Ttime" prefHeight="25.0" prefWidth="430.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="Tfrom" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Time" GridPane.rowIndex="2" />
+                        <Label text="From" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <GridPane fx:id="train" layoutX="80.0" layoutY="92.0" prefHeight="536.0" prefWidth="841.0" visible="false">
                      <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="760.0" minWidth="10.0" prefWidth="751.0" />
                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="705.0" minWidth="10.0" prefWidth="90.0" />
@@ -424,45 +452,48 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#etrain3u" text="Une7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Button mnemonicParsing="false" onAction="#etrain2u" text="Une7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button mnemonicParsing="false" onAction="#etrain1u" text="Une7gz" GridPane.columnIndex="1" />
+                        <Button fx:id="tr1" mnemonicParsing="false" onAction="#etrain1" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" />
+                        <Button fx:id="tr2" mnemonicParsing="false" onAction="#etrain2" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Button fx:id="tr3" mnemonicParsing="false" onAction="#etrain3" prefWidth="60.0" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                         <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="From" />
+                                    <Label text="Alex." />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Dep. Time" />
+                                    <Label text="6/15/23 5:00 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Arrival Time" />
+                                    <Label text="6/15/23 6:30 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Price" />
+                                    <Label text="90 LE" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Type" />
+                                    <Label text="Local" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="To" />
+                                    <Label text="Cairo" />
                                  </children>
                               </VBox>
                            </children>
@@ -471,38 +502,38 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="From" />
+                                    <Label text="Alex." />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Dep. Time" />
+                                    <Label text="6/15/23 5:00 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Arrival Time" />
+                                    <Label text="6/15/23 5:30 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Price" />
+                                    <Label text="450 LE" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Type" />
+                                    <Label text="Local" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="To" />
+                                    <Label text="Aswan" />
                                  </children>
                               </VBox>
                            </children>
@@ -511,178 +542,170 @@
                            <children>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="From" />
+                                    <Label text="Alex." />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Dep. Time" />
+                                    <Label text="6/15/23 5:00 PM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Arrival Time" />
+                                    <Label text="6/16/23 6:30 AM" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Price" />
+                                    <Label text="700 LE" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Type" />
+                                    <Label text="International" />
                                  </children>
                               </VBox>
                               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="To" />
+                                    <Label text="Khartoum" />
                                  </children>
                               </VBox>
                            </children>
                         </HBox>
                      </children>
                   </GridPane>
-                  <GridPane fx:id="train" layoutX="100.0" layoutY="112.0" prefHeight="536.0" prefWidth="841.0" visible="false">
-                     <columnConstraints>
-                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="760.0" minWidth="10.0" prefWidth="751.0" />
-                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="705.0" minWidth="10.0" prefWidth="90.0" />
-                     </columnConstraints>
-                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                     </rowConstraints>
+                  <Label fx:id="title47agz" alignment="CENTER" contentDisplay="CENTER" layoutX="450.0" layoutY="34.0" text="." visible="false">
+                     <font>
+                        <Font name="Impact" size="27.0" />
+                     </font>
+                  </Label>
+                  <GridPane fx:id="booked" layoutX="99.0" layoutY="49.0" prefHeight="574.0" prefWidth="803.0" visible="false">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
                      <children>
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" />
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Button mnemonicParsing="false" text="E7gz" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                        <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              <HBox alignment="CENTER" prefHeight="81.0" prefWidth="402.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Planes">
+                                       <font>
+                                          <Font name="System Bold" size="22.0" />
+                                       </font>
+                                    </Label>
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="402.0" spacing="90.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Alex. to Aswan" />
+                                    <CheckBox fx:id="p1check" disable="true" mnemonicParsing="false" text="M7goz" />
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="402.0" spacing="100.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Alex. to Paris" />
+                                    <CheckBox fx:id="p2check" disable="true" mnemonicParsing="false" text="M7goz" />
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="66.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Alex. to Fawzy Land" />
+                                    <CheckBox fx:id="p3check" disable="true" mnemonicParsing="false" text="M7goz" />
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
-                                 <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
-                                 <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
-                                 </children>
-                              </VBox>
+                              </HBox>
                            </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              <HBox alignment="CENTER" prefHeight="52.0" prefWidth="402.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Bus">
+                                       <font>
+                                          <Font name="System Bold" size="22.0" />
+                                       </font>
+                                    </Label>
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="95.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Alex. to Aswan" />
+                                    <CheckBox fx:id="b1check" disable="true" mnemonicParsing="false" text="M7goz" />
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="105.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Alex. to Cairo" />
+                                    <CheckBox fx:id="b2check" disable="true" mnemonicParsing="false" text="M7goz" />
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="80.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Alex. to Monofeya" />
+                                    <CheckBox fx:id="b3check" disable="true" mnemonicParsing="false" text="M7goz" />
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
-                                 <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
-                                 <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
-                                 </children>
-                              </VBox>
+                              </HBox>
                            </children>
-                        </HBox>
-                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="2">
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                            <children>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label text="Taxi">
+                                       <font>
+                                          <Font name="System Bold" size="22.0" />
+                                       </font>
+                                    </Label>
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
                                  <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
+                                    <Label fx:id="txitext" text="Msh m7goz" />
                                  </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
-                                 <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
-                                 <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
-                                 <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
-                                 </children>
-                              </VBox>
-                              <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0">
-                                 <children>
-                                    <Label text="Label" />
-                                    <Label text="Label" />
-                                 </children>
-                              </VBox>
+                              </HBox>
                            </children>
-                        </HBox>
+                        </VBox>
+                        <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="54.0" prefWidth="401.0">
+                                 <children>
+                                    <Label text="Train">
+                                       <font>
+                                          <Font name="System Bold" size="22.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="90.0">
+                                 <children>
+                                    <Label text="Alex. to Cairo" />
+                                    <CheckBox fx:id="tr1check" disable="true" mnemonicParsing="false" text="M7goz" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="85.0">
+                                 <children>
+                                    <Label text="Alex. to Aswan" />
+                                    <CheckBox fx:id="tr2check" disable="true" mnemonicParsing="false" text="M7goz" />
+                                 </children>
+                              </HBox>
+                              <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" spacing="70.0">
+                                 <children>
+                                    <Label text="Alex. to Khartoum" />
+                                    <CheckBox fx:id="tr3check" disable="true" mnemonicParsing="false" text="M7goz" />
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
                      </children>
                   </GridPane>
                </children>

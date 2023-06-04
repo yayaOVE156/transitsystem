@@ -18,7 +18,7 @@ public class Ticket {
 
     Item item;
 
-    public void setPrice(float price) {
+    public void setPrice(Double price) {
         Price = price;
     }
 

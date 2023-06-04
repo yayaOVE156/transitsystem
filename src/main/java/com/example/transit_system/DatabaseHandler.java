@@ -431,6 +431,58 @@ public class DatabaseHandler {
         return userTickets;
     }
 
+    public static void addFeedBack(Feedback feedback) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        ApiFuture<WriteResult> docRef = db.collection("Feedback").document(feedback.getUser()).set(feedback);
+        System.out.println("Update time: " + docRef.get());
+    }
+    public static Feedback getFeedBack(String userName) throws IOException, ExecutionException, InterruptedException{
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Feedback feedback = null;
+        DocumentReference docRef = db.collection("Feedback").document(userName);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            feedback = document.toObject(Feedback.class);
+        }
+        else
+            System.out.println("no such document!");
+        return feedback;
+    }
+    public static List<Feedback> getFeedbacks() throws IOException, ExecutionException, InterruptedException{
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Feedback feedback = null;
+        CollectionReference feedbackRef = db.collection("Feedback");
+
+        ApiFuture<QuerySnapshot> future = feedbackRef.get();
+        QuerySnapshot snapshots = future.get();
+
+        List<Feedback> Feedbacks = new ArrayList<>();
+        for(QueryDocumentSnapshot document : snapshots.getDocuments()) {
+            feedback = document.toObject(Feedback.class);
+            Feedbacks.add(feedback);
+            System.out.println(document.getData());
+
+        }
+        if(snapshots.isEmpty())
+            System.out.println("no such document!");
+        return Feedbacks;
+    }
+
+
     public static void main(String[] args) throws Exception {
       //  addUser(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
       // getUser("Acey");
@@ -454,7 +506,11 @@ public class DatabaseHandler {
           //     new Date(123, 2, 1, 20, 20, 10), "Cairo", "Alex", 30, "atr 6 ela telt", 69)),"Acey");
        // getTickets("Acey");
        // setAdmin(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
-        setAdmin("Mohamed");
+//        setAdmin("Mohamed");
+        addFeedBack(new Feedback(1,"Ahmed","yel3na abo deh sho8lana",new Date(1,2,2004)));
+        addFeedBack(new Feedback(2,"MAriam","LUV YOu",new Date(1,2,2004)));
+        addFeedBack(new Feedback(3,"adawy","ast8far allah",new Date(1,2,2004)));
+        getFeedbacks();
 
     }
 

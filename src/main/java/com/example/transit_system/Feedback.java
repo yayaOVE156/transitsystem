@@ -2,12 +2,22 @@ package com.example.transit_system;
 
 import java.util.Date;
 
-public class Feedback {
+public class Feedback  {
 
     int Id;
     String Name;
     String Message;
     Date Date;
+    Feedback(){}
+    Feedback(String Msg){
+        this.Message = Msg;
+    }
+    Feedback(int ID,String Name,String Msg,Date Date){
+        this.Message = Msg;
+        this.Name = Name;
+        this.Id = ID;
+        this.Date = Date;
+    }
 
 
     public int getId()

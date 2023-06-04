@@ -198,17 +198,29 @@ public class DatabaseHandler {
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .build();
         Firestore db = options.getService();
-        Account account = null;
+        Account account;
         DocumentReference docRef = db.collection("Accounts").document(userName);
         ApiFuture<DocumentSnapshot> future = docRef.get();
         DocumentSnapshot document = future.get();
-        if(document.exists()) {
+        if (document.exists()) {
             System.out.println("Document Data: " + document.getData());
-            account = document.toObject(Account.class);
+            Map<String, Object> data = document.getData();
+            if (data != null && data.containsKey("type")) {
+                Object fieldValue = data.get("type");
+                if (fieldValue.equals("Admin")) {
+                    account = document.toObject(Adminstrator.class);
+                    return new Adminstrator(account.getUserName(), account.getPassword(), account.getEmail(), account.getPhoneNumber(), account.getAddress(), account.getID());
+                } else if (fieldValue.equals("User")) {
+                    account = document.toObject(User.class);
+                    return new User(account.getUserName(), account.getPassword(), account.getEmail(), account.getPhoneNumber(), account.getAddress(), account.getID());
+                } else {
+
+                    System.out.println("No such field!");
+                    return null;
+                }
+            }
         }
-        else
-            System.out.println("no such document!");
-        return account;
+        return null;
     }
 
     //--------------------------------Adding hotels-------------------------\\
@@ -503,14 +515,14 @@ public class DatabaseHandler {
 
 
     public static void main(String[] args) throws Exception {
-      //  addUser(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
+      // addUser(new User("Zack", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
       // getUser("Acey");
       //  addHotel(new Hotel("Fawzy Resort", 4.5F, 500));
       //  getHotel("Fawzy Resort");
       //  DatabaseHandler.initialize();
 
-        addTrain(new Train((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
-                new Date(123, 2, 1, 20, 20, 10), "Cairo", "Alex", 30, "atr 6 ela telt", 69));
+       // addTrain(new Train((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
+               // new Date(123, 2, 1, 20, 20, 10), "Cairo", "Alex", 30, "atr 6 ela telt", 69));
 
        // addInternationalTrain(new InternationalTrain((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
                 // new Date(123, 2, 1, 20, 20, 10),
@@ -530,6 +542,8 @@ public class DatabaseHandler {
         //addFeedBack(new Feedback(2,"MAriam","LUV YOu",new Date(1,2,2004)));
        // addFeedBack(new Feedback(3,"adawy","ast8far allah",new Date(1,2,2004)));
        // getFeedbacks();
+        System.out.println((getAccount("Acey")));
+        System.out.println((getAccount("Zack")));
 
     }
 

@@ -10,11 +10,6 @@ public class Adminstrator extends Account{
     }
 
 
-    public void ConfirmTicket() // will confirm a ticket using its ID or something idk <YahyaAdawy>
-    {
-
-    }
-
     public String ViewFeedBack() // return feedbacks
     {
         for(int i = 0; i < feedback.length ; i++)

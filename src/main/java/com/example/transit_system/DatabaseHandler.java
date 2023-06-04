@@ -468,7 +468,7 @@ public class DatabaseHandler {
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
                 .build();
         Firestore db = options.getService();
-        ApiFuture<WriteResult> docRef = db.collection("Feedback").document(feedback.getUser()).set(feedback);
+        ApiFuture<WriteResult> docRef = db.collection("Feedback").document(feedback.getName()).set(feedback);
         System.out.println("Update time: " + docRef.get());
     }
     public static Feedback getFeedBack(String userName) throws IOException, ExecutionException, InterruptedException{
@@ -505,7 +505,7 @@ public class DatabaseHandler {
         for(QueryDocumentSnapshot document : snapshots.getDocuments()) {
             feedback = document.toObject(Feedback.class);
             Feedbacks.add(feedback);
-            System.out.println(document.getData());
+            System.out.println(feedback.getId());
 
         }
         if(snapshots.isEmpty())
@@ -542,8 +542,13 @@ public class DatabaseHandler {
         //addFeedBack(new Feedback(2,"MAriam","LUV YOu",new Date(1,2,2004)));
        // addFeedBack(new Feedback(3,"adawy","ast8far allah",new Date(1,2,2004)));
        // getFeedbacks();
-        System.out.println((getAccount("Acey")));
-        System.out.println((getAccount("Zack")));
+        //System.out.println((getAccount("Acey")));
+        //System.out.println((getAccount("Zack")));
+       // List<Feedback> s = new ArrayList<>();
+        //s = getFeedbacks();
+       // for(Feedback feedback : s)
+          //  System.out.println(s.get(0).getId());
+
 
     }
 

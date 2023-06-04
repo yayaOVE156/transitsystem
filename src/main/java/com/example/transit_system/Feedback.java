@@ -24,7 +24,8 @@ public class Feedback  {
     {
         return Id;
     }
-    public String getUser()
+    public void setId(int id) { Id = id;}
+    public String getName()
     {
         return Name;
     }

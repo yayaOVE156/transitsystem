@@ -161,6 +161,26 @@ public class DatabaseHandler {
         ApiFuture<WriteResult> docRef2 = db.collection("Accounts").document(user.getUserName()).set(admin);
 
     }
+    public static void setUser (String userName) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Adminstrator admin = null;
+        DocumentReference docRef = db.collection("Accounts").document(userName);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            admin = document.toObject(Adminstrator.class);
+        }
+        else
+            System.out.println("No such document");
+        User user = new User(admin.getUserName(), admin.getPassword(), admin.getEmail(), admin.getPhoneNumber(), admin.getAddress(), admin.getID());
+        ApiFuture<WriteResult> docRef2 = db.collection("Accounts").document(admin.getUserName()).set(user);
+
+    }
     public static void setAdmin(User user) throws ExecutionException, InterruptedException, IOException {
         FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
         FirestoreOptions options = FirestoreOptions.newBuilder()

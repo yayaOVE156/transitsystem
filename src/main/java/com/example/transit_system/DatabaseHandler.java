@@ -22,25 +22,25 @@ import com.google.firebase.cloud.FirestoreClient;
 
 
 public class DatabaseHandler {
-    public static Firestore db;
-        public static void initialize() throws IOException, ExecutionException, InterruptedException {
-            FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+    //public static Firestore db;
+        ////public static void initialize() throws IOException, ExecutionException, InterruptedException {
+           // FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
 
-            FirestoreOptions options = FirestoreOptions.newBuilder()
-                    .setCredentials(GoogleCredentials.fromStream(serviceAccount))
-                    .build();
+          // FirestoreOptions options = FirestoreOptions.newBuilder()
+            //        .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+            //        .build();
 
-            Firestore db = options.getService();
+           // Firestore db = options.getService();
 
-            DocumentReference docRef = db.collection("test3").document("test2").collection("brother").document();
+           // DocumentReference docRef = db.collection("test3").document("test2").collection("brother").document();
 
-            Map<String, Number> data = new HashMap<>();
-            data.put("hello", 10);
-            //data.put(6, "home");
+          //  Map<String, Number> data = new HashMap<>();
+           // data.put("hello", 10);
+           //data.put(6, "home");
             //data.put(10, "01003410931");
-            WriteResult result = docRef.set(data).get();
-            System.out.println("Update time: " + result.getUpdateTime());
-        }
+         //   WriteResult result = docRef.set(data).get();
+         //   System.out.println("Update time: " + result.getUpdateTime());
+      //  }
 
         //---------------------- Adding User-------------------------\\
     public static void addUser(User user) throws ExecutionException, InterruptedException, IOException {
@@ -140,6 +140,16 @@ public class DatabaseHandler {
         else
             System.out.println("no such document!");
         return admin;
+    }
+    public static void addAdmin(User user) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Adminstrator admin = new Adminstrator(user.getUserName(), user.getPassword(), user.getEmail(), user.getPhoneNumber(), user.getAddress(),user.getID());
+        ApiFuture<WriteResult> docRef = db.collection("Accounts").document(admin.getUserName()).set(admin);
+        System.out.println("Update time: " + docRef.get());
     }
 
     //--------------------------------Adding hotels-------------------------\\
@@ -403,6 +413,7 @@ public class DatabaseHandler {
       // addTicket( new Ticket(1000,new Random().nextInt(1000-100)+100, new Train((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
           //     new Date(123, 2, 1, 20, 20, 10), "Cairo", "Alex", 30, "atr 6 ela telt", 69)),"Acey");
        // getTickets("Acey");
+        addAdmin(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
 
     }
 

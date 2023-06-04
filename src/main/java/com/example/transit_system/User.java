@@ -20,4 +20,5 @@ public class User extends Account{
         {
 
         }
+        public void getPaymentStatus(){}
 }

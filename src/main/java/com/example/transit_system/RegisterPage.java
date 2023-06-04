@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
 import javafx.fxml.FXMLLoader;
+import java.util.Random;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -97,7 +98,9 @@ public class RegisterPage extends Application {
         if(psswrd.getText().isEmpty() || Username.getText().isEmpty() || email.getText().isEmpty()||address.getText().isEmpty()||name.getText().isEmpty()||phone.getText().isEmpty() || passerror || nameerror || emailerror){
             miss.setVisible(true);
         }else{
-            DatabaseHandler.addUser(new User(Username.getText(),psswrd.getText(),email.getText(),phone.getText(),address.getText(),11));
+            Random ren =new Random();
+            int ran =ren.nextInt(1000-100)+100;
+            DatabaseHandler.addUser(new User(Username.getText(),psswrd.getText(),email.getText(),phone.getText(),address.getText(),ran));
         }
 
         //   addUser(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));

@@ -43,9 +43,10 @@ public class LoginPage extends Application{
     @FXML
     public void loginClick(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
 
-        Object v = DatabaseHandler.getUser(username.getText());
+        Account v = DatabaseHandler.getAccount(username.getText());
         if(v instanceof Adminstrator){
-            Adminstrator admin = (Adminstrator) v;
+            // Administrator admin = (Administrator)v;
+            Adminstrator admin = DatabaseHandler.getAdmin(username.getText());
             if(!admin.getUserName().equals(username.getText()) || !admin.getPassword().equals(psswrd.getText())){
                 Err.setVisible(true);
             }else{
@@ -56,22 +57,13 @@ public class LoginPage extends Application{
 
                 currentStage.close();
                 Parent root = FXMLLoader.load(getClass().getResource("Admin-view.fxml"));
-//            Stage homeStage = new Stage();
-//
-//            homeStage.setTitle("Homepage");
-//            homeStage.setScene(new Scene(root));
-//            homeStage.show();
                 AdminPage admino = new AdminPage();
                 admino.start(new Stage());
-
-
-
-
-
             }
 
         }else{
-            User user = (User)v;
+            // User user = (User)v;
+            User user = DatabaseHandler.getUser(username.getText());
             if(!user.getUserName().equals(username.getText()) || !user.getPassword().equals(psswrd.getText())){
                 Err.setVisible(true);
             }else{
@@ -82,11 +74,6 @@ public class LoginPage extends Application{
 
                 currentStage.close();
                 Parent root = FXMLLoader.load(getClass().getResource("Home-view.fxml"));
-//            Stage homeStage = new Stage();
-//
-//            homeStage.setTitle("Homepage");
-//            homeStage.setScene(new Scene(root));
-//            homeStage.show();
                 HomePage home = new HomePage();
                 home.start(new Stage());
 

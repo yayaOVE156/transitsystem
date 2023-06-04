@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Random;
+import java.util.concurrent.ExecutionException;
 
 public class HomePage extends Application {
 
@@ -51,6 +54,8 @@ public class HomePage extends Application {
     Button home;
     @FXML
     GridPane planes;
+    @FXML
+    TextArea feedbacktext;
     @FXML
     GridPane bus;
 
@@ -326,6 +331,14 @@ public class HomePage extends Application {
         booked.setVisible(true);
         title47agz.setVisible(false);
     }
+
+    public void feedbacksend(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
+
+        Random r =new Random();
+        int x = r.nextInt(10000-1000)+1000;
+        DatabaseHandler.addFeedBack(new Feedback(x,userdata.getUsername(),feedbacktext.getText(),new Date()));
+    }
+
 
 
 

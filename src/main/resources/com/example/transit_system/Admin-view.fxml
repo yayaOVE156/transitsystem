@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -44,7 +45,7 @@
                         </ColorAdjust>
                      </effect>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="122.0" text="Feedback Viewer">
+                  <Button mnemonicParsing="false" onAction="#showfeedback" prefHeight="45.0" prefWidth="122.0" text="Feedback Viewer">
                      <effect>
                         <ColorAdjust brightness="-0.16">
                            <input>
@@ -93,7 +94,7 @@
                               </Label>
                               <AnchorPane layoutX="112.0" layoutY="52.0" prefHeight="567.0" prefWidth="776.0">
                                  <children>
-                                    <GridPane fx:id="adminpane" layoutX="-7.0" layoutY="59.0" prefHeight="510.0" prefWidth="783.0">
+                                    <GridPane fx:id="adminpane" layoutX="-7.0" layoutY="59.0" prefHeight="510.0" prefWidth="783.0" visible="false">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="750.0" minWidth="10.0" prefWidth="750.0" />
                                       </columnConstraints>
@@ -142,6 +143,24 @@
                                                 <TextField fx:id="usernameA" alignment="CENTER" prefHeight="25.0" prefWidth="818.0" promptText="Type Username" />
                                              </children>
                                           </VBox>
+                                       </children>
+                                    </GridPane>
+                                    <GridPane fx:id="feedbackpane" gridLinesVisible="true" layoutX="1.0" layoutY="57.0" prefHeight="463.0" prefWidth="752.0">
+                                      <columnConstraints>
+                                        <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                      </columnConstraints>
+                                      <rowConstraints>
+                                          <RowConstraints maxHeight="375.0" minHeight="10.0" prefHeight="375.0" vgrow="SOMETIMES" />
+                                        <RowConstraints maxHeight="255.0" minHeight="10.0" prefHeight="145.0" vgrow="SOMETIMES" />
+                                      </rowConstraints>
+                                       <children>
+                                          <ListView fx:id="feedbaclist" prefHeight="365.0" prefWidth="752.0" />
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                             <children>
+                                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Previous" />
+                                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Next" />
+                                             </children>
+                                          </HBox>
                                        </children>
                                     </GridPane>
                                  </children>

@@ -3,8 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.ColorAdjust?>
 <?import javafx.scene.effect.InnerShadow?>
@@ -46,24 +44,6 @@
                         </ColorAdjust>
                      </effect>
                   </Button>
-                  <SplitMenuButton mnemonicParsing="false" prefHeight="45.0" prefWidth="115.0" text="Create Tickets">
-                    <items>
-                        <MenuItem mnemonicParsing="false" text="Bus" />
-                      <MenuItem mnemonicParsing="false" text="Plane" />
-                      <MenuItem mnemonicParsing="false" text="Taxi" />
-                        <MenuItem mnemonicParsing="false" text="Train" />
-                    </items>
-                     <effect>
-                        <InnerShadow>
-                           <input>
-                              <ColorAdjust brightness="-0.16" />
-                           </input>
-                           <color>
-                              <Color red="0.14901961386203766" green="0.572549045085907" blue="1.0" />
-                           </color>
-                        </InnerShadow>
-                     </effect>
-                  </SplitMenuButton>
                   <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="122.0" text="Feedback Viewer">
                      <effect>
                         <ColorAdjust brightness="-0.16">
@@ -113,7 +93,7 @@
                               </Label>
                               <AnchorPane layoutX="112.0" layoutY="52.0" prefHeight="567.0" prefWidth="776.0">
                                  <children>
-                                    <GridPane layoutX="-7.0" layoutY="59.0" prefHeight="510.0" prefWidth="783.0">
+                                    <GridPane fx:id="adminpane" layoutX="-7.0" layoutY="59.0" prefHeight="510.0" prefWidth="783.0">
                                       <columnConstraints>
                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="750.0" minWidth="10.0" prefWidth="750.0" />
                                       </columnConstraints>
@@ -124,7 +104,7 @@
                                        <children>
                                           <HBox alignment="CENTER" prefHeight="214.0" prefWidth="750.0" spacing="250.0" GridPane.rowIndex="1">
                                              <children>
-                                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="112.0" text="Add as Admin">
+                                                <Button mnemonicParsing="false" onAction="#adda" prefHeight="45.0" prefWidth="112.0" text="Add as Admin">
                                                    <effect>
                                                       <ColorAdjust brightness="-0.16">
                                                          <input>
@@ -137,7 +117,7 @@
                                                       </ColorAdjust>
                                                    </effect>
                                                 </Button>
-                                                <Button mnemonicParsing="false" prefHeight="45.0" prefWidth="133.0" text="Remove as Admin">
+                                                <Button mnemonicParsing="false" onAction="#rema" prefHeight="45.0" prefWidth="133.0" text="Remove as Admin">
                                                    <effect>
                                                       <ColorAdjust brightness="-0.16">
                                                          <input>
@@ -152,7 +132,7 @@
                                                 </Button>
                                              </children>
                                           </HBox>
-                                          <VBox fx:id="adminpane" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="150.0">
+                                          <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="150.0">
                                              <children>
                                                 <Label text="Admin Maker" textFill="RED">
                                                    <font>

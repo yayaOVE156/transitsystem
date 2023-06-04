@@ -61,15 +61,24 @@ public class AdminPage extends Application {
 
     }
 
-//    public void adda(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
-//        String x;
-//        x=usernameA.getText();
-//        //Adminstrator admin = new Adminstrator(DatabaseHandler.getUser(x));
-//
-//        DatabaseHandler.addAdmin(admin);
-//
-//
-//    }
+    public void adda(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
+        String x;
+        x=usernameA.getText();
+        DatabaseHandler.setAdmin(x);
+
+
+    }
+
+    public void rema(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
+        String x;
+        x=usernameA.getText();
+        DatabaseHandler.setUser(x);
+
+
+    }
+
+
+
     public void logout(ActionEvent e)throws IOException{
         UserS userdata=UserS.getInstance();
         userdata.setUsername(null);

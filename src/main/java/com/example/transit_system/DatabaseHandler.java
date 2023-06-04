@@ -192,6 +192,25 @@ public class DatabaseHandler {
         System.out.println("Update time: " + docRef.get());
     }
 
+    public static Account getAccount(String userName) throws IOException, ExecutionException, InterruptedException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        Account account = null;
+        DocumentReference docRef = db.collection("Accounts").document(userName);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            account = document.toObject(Account.class);
+        }
+        else
+            System.out.println("no such document!");
+        return account;
+    }
+
     //--------------------------------Adding hotels-------------------------\\
     public static void addHotel(Hotel hotel) throws ExecutionException, InterruptedException, IOException {
         FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
@@ -507,10 +526,10 @@ public class DatabaseHandler {
        // getTickets("Acey");
        // setAdmin(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
 //        setAdmin("Mohamed");
-        addFeedBack(new Feedback(1,"Ahmed","yel3na abo deh sho8lana",new Date(1,2,2004)));
-        addFeedBack(new Feedback(2,"MAriam","LUV YOu",new Date(1,2,2004)));
-        addFeedBack(new Feedback(3,"adawy","ast8far allah",new Date(1,2,2004)));
-        getFeedbacks();
+        //addFeedBack(new Feedback(1,"Ahmed","yel3na abo deh sho8lana",new Date(1,2,2004)));
+        //addFeedBack(new Feedback(2,"MAriam","LUV YOu",new Date(1,2,2004)));
+       // addFeedBack(new Feedback(3,"adawy","ast8far allah",new Date(1,2,2004)));
+       // getFeedbacks();
 
     }
 

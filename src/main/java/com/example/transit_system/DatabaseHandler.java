@@ -141,7 +141,27 @@ public class DatabaseHandler {
             System.out.println("no such document!");
         return admin;
     }
-    public static void addAdmin(User user) throws ExecutionException, InterruptedException, IOException {
+    public static void setAdmin(String userName) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        User user = null;
+        DocumentReference docRef = db.collection("Accounts").document(userName);
+        ApiFuture<DocumentSnapshot> future = docRef.get();
+        DocumentSnapshot document = future.get();
+        if(document.exists()) {
+            System.out.println("Document Data: " + document.getData());
+            user = document.toObject(User.class);
+        }
+        else
+            System.out.println("No such document");
+        Adminstrator admin = new Adminstrator(user.getUserName(), user.getPassword(), user.getEmail(), user.getPhoneNumber(), user.getAddress(), user.getID());
+        ApiFuture<WriteResult> docRef2 = db.collection("Accounts").document(user.getUserName()).set(admin);
+
+    }
+    public static void setAdmin(User user) throws ExecutionException, InterruptedException, IOException {
         FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
         FirestoreOptions options = FirestoreOptions.newBuilder()
                 .setCredentials(GoogleCredentials.fromStream(serviceAccount))
@@ -413,7 +433,8 @@ public class DatabaseHandler {
       // addTicket( new Ticket(1000,new Random().nextInt(1000-100)+100, new Train((new Random().nextInt(300 - 100) + 100), new Date(123, 2, 1, 10, 10, 10),
           //     new Date(123, 2, 1, 20, 20, 10), "Cairo", "Alex", 30, "atr 6 ela telt", 69)),"Acey");
        // getTickets("Acey");
-        addAdmin(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
+       // setAdmin(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));
+        setAdmin("Mohamed");
 
     }
 

@@ -418,6 +418,17 @@ public class DatabaseHandler {
         ApiFuture<WriteResult> docRef = db.collection("Accounts").document(userName).collection("Tickets").document(String.valueOf(ticket.getTransportationID())).set(ticket);
         System.out.println("Update time: " + docRef.get());
     }
+    public static void DeleteTicket(int Id, String userName) throws ExecutionException, InterruptedException, IOException {
+        FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
+        FirestoreOptions options = FirestoreOptions.newBuilder()
+                .setCredentials(GoogleCredentials.fromStream(serviceAccount))
+                .build();
+        Firestore db = options.getService();
+        DocumentReference docRef = db.collection("Accounts").document(userName).collection("Tickets").document(String.valueOf(Id));
+        ApiFuture<WriteResult> DeleteFuture = docRef.delete();
+        DeleteFuture.get();
+        System.out.println("Working" );
+    }
 
     public static Ticket getTicket(int id, String userName) throws IOException, ExecutionException, InterruptedException{
         FileInputStream serviceAccount = new FileInputStream("./serviceAccountKey.json");
@@ -548,6 +559,7 @@ public class DatabaseHandler {
         //s = getFeedbacks();
        // for(Feedback feedback : s)
           //  System.out.println(s.get(0).getId());
+        DeleteTicket(10,"BlackMamba");
 
 
     }

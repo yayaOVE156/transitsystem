@@ -81,12 +81,6 @@ public class RegisterPage extends Application {
         }else{
             Repeat.setVisible(false);
         }
-        if(DatabaseHandler.getUser(Username.getText())!=null){
-            URepeat.setVisible(true);
-            nameerror = true;
-        }else{
-            URepeat.setVisible(false);
-        }
         if(DatabaseHandler.checkEmail(email.getText())) {
             emailerror = true;
             ERepeat.setVisible(true);
@@ -94,6 +88,17 @@ public class RegisterPage extends Application {
         else {
             ERepeat.setVisible(false);
         }
+        if(Username.getText().isEmpty()) {
+            URepeat.setVisible(true);
+            URepeat.setText("This Field can't be empty!");
+        }else if(DatabaseHandler.getUser(Username.getText())!=null){
+            URepeat.setVisible(true);
+            URepeat.setText("Username Already in Use!");
+            nameerror = true;
+        }else{
+            URepeat.setVisible(false);
+        }
+
 
         if(psswrd.getText().isEmpty() || Username.getText().isEmpty() || email.getText().isEmpty()||address.getText().isEmpty()||name.getText().isEmpty()||phone.getText().isEmpty() || passerror || nameerror || emailerror){
             miss.setVisible(true);
@@ -101,6 +106,14 @@ public class RegisterPage extends Application {
             Random ren =new Random();
             int ran =ren.nextInt(1000-100)+100;
             DatabaseHandler.addUser(new User(Username.getText(),psswrd.getText(),email.getText(),phone.getText(),address.getText(),ran));
+            Scene currentScene = ((Node) e.getSource()).getScene();
+            Stage currentStage = (Stage) currentScene.getWindow();
+            UserS userdata =UserS.getInstance();
+            userdata.setUsername(Username.getText());
+            currentStage.close();
+            Parent root = FXMLLoader.load(getClass().getResource("Home-view.fxml"));
+            HomePage home = new HomePage();
+            home.start(new Stage());
         }
 
         //   addUser(new User("Yahya", "itsMe", "vipyahya50@gmail.com", "01003333455", "march", 50));

@@ -19,7 +19,6 @@ public class Feedback  {
         this.Date = Date;
     }
 
-
     public int getId()
     {
         return Id;
@@ -46,4 +45,8 @@ public class Feedback  {
         Message = m;
     }
 
+    @Override
+    public String toString() {
+        return "ID:     "+ getId()+ " Name:      "+getName() + " Message:    " + getMessage()+" Date:    "+ getTimeStamp();
+    }
 }

@@ -254,17 +254,17 @@
                         </HBox>
                      </children>
                   </GridPane>
-                  <ImageView fx:id="fwzyAD" fitHeight="401.0" fitWidth="317.0" layoutX="14.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" scaleY="1.5" visible="false">
+                  <ImageView fx:id="fwzyAD" fitHeight="401.0" fitWidth="317.0" layoutX="14.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true" scaleY="1.5">
                      <image>
                         <Image url="@../../../img/fawzyResort.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="Welcometext" alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="251.0" prefHeight="170.0" prefWidth="590.0" textAlignment="CENTER" visible="false">
+                  <Label fx:id="Welcometext" alignment="CENTER" contentDisplay="CENTER" layoutX="348.0" layoutY="251.0" prefHeight="170.0" prefWidth="590.0" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri Bold" size="38.0" />
                      </font>
                   </Label>
-                  <GridPane fx:id="feedbackpane" gridLinesVisible="true" layoutX="207.0" layoutY="90.0" prefHeight="493.0" prefWidth="587.0">
+                  <GridPane fx:id="feedbackpane" gridLinesVisible="true" layoutX="207.0" layoutY="90.0" prefHeight="493.0" prefWidth="587.0" visible="false">
                     <columnConstraints>
                       <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
@@ -277,7 +277,7 @@
                         <Button mnemonicParsing="false" onAction="#feedbacksend" prefHeight="41.0" prefWidth="165.0" text="Submit Feedback" GridPane.rowIndex="1" />
                      </children>
                   </GridPane>
-                  <Label fx:id="ad1" contentDisplay="CENTER" layoutX="14.0" layoutY="39.0" prefHeight="24.0" prefWidth="78.0" text="Tayayaah ads:" textAlignment="CENTER" visible="false">
+                  <Label fx:id="ad1" contentDisplay="CENTER" layoutX="14.0" layoutY="39.0" prefHeight="24.0" prefWidth="78.0" text="Tayayaah ads:" textAlignment="CENTER">
                      <font>
                         <Font name="Calibri Light" size="13.0" />
                      </font>

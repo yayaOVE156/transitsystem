@@ -16,6 +16,7 @@ import javafx.stage.Stage;
 import org.w3c.dom.Text;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -26,7 +27,7 @@ public class AdminPage extends Application {
     @FXML
     GridPane feedbackpane;
     @FXML
-    ListView<Feedback> feedbacklist;
+    ListView<String> feedbacklist;
 
 
 
@@ -109,36 +110,20 @@ public class AdminPage extends Application {
         feedbackpane.setVisible(true);
 
         List<Feedback> feedbacks = DatabaseHandler.getFeedbacks();
-        ObservableList<Feedback> feedback = FXCollections.observableArrayList(); // Initialize the ObservableList
+        List<String> feedbackString = new ArrayList<>();
 
-        feedback.addAll(feedbacks); // Add all the feedbacks to the ObservableList
-
-        feedbacklist.setItems(feedback); // Set the ObservableList as the items for the ListView
-        feedbacklist.refresh();
-
-//        List<Feedback> feedbacks = DatabaseHandler.getFeedbacks();
-//        ObservableList<Feedback> feedback = FXCollections.observableArrayList(); // Initialize the ObservableList
-//
-//        if (!feedbacks.isEmpty()) {
-//            feedback.add(feedbacks.get(0)); // Add the first feedback from the feedbacks list to the ObservableList
-//        }
-//
-//        feedbacklist.setItems(feedback); // Set the ObservableList as the items for the ListView
-//        feedbacklist.refresh();
-
-    }
-    public void feedbacknext(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
-        ++iterator;
-//        List<Feedback> feedbacks=DatabaseHandler.getFeedbacks();
-//        feedbacklist.setItems((ObservableList<Feedback>) feedback.get(iterator));
-    }
-
-    public void feedbackprev(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
-        if(iterator>=0){
-            --iterator;
+        for (Feedback f : feedbacks) {
+            feedbackString.add(f.toString());
         }
-//        List<Feedback> feedbacks=DatabaseHandler.getFeedbacks();
-//        feedbacklist.setItems((ObservableList<Feedback>) feedbacks.get(iterator));
+
+        feedbacklist.getItems().addAll(feedbackString);
+        feedbacklist.refresh();
+    }
+
+
+    public void feedbacknext(ActionEvent e) throws IOException, ExecutionException, InterruptedException {
+
+        feedbacklist.refresh();
     }
 
 int iterator =0;

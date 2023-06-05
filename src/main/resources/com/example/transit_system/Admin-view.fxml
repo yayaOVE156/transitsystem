@@ -87,7 +87,7 @@
                      <children>
                         <Pane prefHeight="200.0" prefWidth="200.0">
                            <children>
-                              <Label fx:id="welctitle" alignment="CENTER" layoutX="377.0" layoutY="239.0" prefHeight="194.0" prefWidth="246.0" text="Welcome Admin" textFill="#e80c0c" visible="false">
+                              <Label fx:id="welctitle" alignment="CENTER" layoutX="377.0" layoutY="239.0" prefHeight="194.0" prefWidth="246.0" text="Welcome Admin" textFill="#e80c0c">
                                  <font>
                                     <Font name="Chiller" size="27.0" />
                                  </font>
@@ -145,7 +145,7 @@
                                           </VBox>
                                        </children>
                                     </GridPane>
-                                    <GridPane fx:id="feedbackpane" gridLinesVisible="true" layoutX="1.0" layoutY="57.0" prefHeight="463.0" prefWidth="752.0">
+                                    <GridPane fx:id="feedbackpane" gridLinesVisible="true" layoutX="1.0" layoutY="57.0" prefHeight="463.0" prefWidth="752.0" visible="false">
                                       <columnConstraints>
                                         <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                       </columnConstraints>
@@ -154,13 +154,18 @@
                                         <RowConstraints maxHeight="255.0" minHeight="10.0" prefHeight="145.0" vgrow="SOMETIMES" />
                                       </rowConstraints>
                                        <children>
-                                          <ListView fx:id="feedbaclist" prefHeight="365.0" prefWidth="752.0" />
-                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                                          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="15.0" visible="false" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                                              <children>
                                                 <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Previous" />
-                                                <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="63.0" text="Next" />
+                                                <Button mnemonicParsing="false" onAction="#feedbacknext" prefHeight="25.0" prefWidth="63.0" text="Next" />
                                              </children>
                                           </HBox>
+                                          <HBox alignment="CENTER" prefHeight="323.0" prefWidth="752.0">
+                                             <children>
+                                                <ListView fx:id="feedbacklist" fixedCellSize="0.0" prefHeight="305.0" prefWidth="680.0" />
+                                             </children>
+                                          </HBox>
+                                          <Button mnemonicParsing="false" onAction="#feedbacknext" text="Refresh" GridPane.rowIndex="1" />
                                        </children>
                                     </GridPane>
                                  </children>

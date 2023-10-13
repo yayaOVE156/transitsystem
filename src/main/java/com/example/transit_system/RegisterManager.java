@@ -78,10 +78,10 @@ public class RegisterManager {
         String digitsOnly = phoneNumber.replaceAll("[^0-9]", "");
 
         // Check if the remaining digits form a valid phone number
-        return digitsOnly.matches("\\d{10}"); // Assuming a 10-digit phone number
+        return digitsOnly.matches("\\d{11}"); // Assuming a 11-digit phone number
     }
 
-    // Method to validate a country
+//     Method to validate a country
     private boolean isValidCountry(String country) {
         // List of valid countries
         String[] validCountries = { "Country A", "Country B", "Country C" }; // Add more valid countries as needed
